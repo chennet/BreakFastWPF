@@ -1,0 +1,31 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:BreakFastWPF.Models">
+    <!-- SHOPPING CART TEMPLATE -->
+    <local:ObsBook x:Key="ObsBook" />
+    <DataTemplate DataType="data:Book" x:Key="ShoppedBook">
+        <Grid Margin="3" >
+            <Border VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Background="{DynamicResource GreetingCardGradient}"
+                            Width="40"
+                            Height="50"
+                            BorderBrush="#44000000"
+                            BorderThickness="1" >
+                <Border.RenderTransform>
+                    <SkewTransform AngleY="-10" />
+                </Border.RenderTransform>
+            </Border>
+            <Border VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Background="White"
+                            Width="50"
+                            Height="50"
+                            BorderBrush="#66000000"
+                            BorderThickness="1" >
+                <Image Margin="3" Source="{Binding CoverImage}" />
+            </Border>
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

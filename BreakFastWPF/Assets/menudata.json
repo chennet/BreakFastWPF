@@ -1,0 +1,62 @@
+[
+  {
+    "MenuType": "Main",
+    "Style": "East",
+    "MenuId": "0001",
+    "Title": "Ring 1",
+    "Price": 25,
+    "Discount": 5,
+    "ImageUri": "images/1.png",
+    "Desp": "Autumn Yellow Leaves | George Hodan"
+  },
+  {
+    "MenuType": "Main",
+    "Style": "East",
+    "MenuId": "0002",
+    "Title": "Ring 2",
+    "Price": 25,
+    "Discount": 5,
+    "ImageUri": "images/2.png",
+    "Desp": "Autumn Yellow Leaves | George Hodan"
+  },
+  {
+    "MenuType": "Main",
+    "Style": "East",
+    "MenuId": "0003",
+    "Title": "Ring 3 Part 1",
+    "Price": 25,
+    "Discount": 5,
+    "ImageUri": "images/3.png",
+    "Desp": "Autumn Yellow Leaves | George Hodan"
+  },
+  {
+    "MenuType": "Main",
+    "Style": "East",
+    "MenuId": "0004",
+    "Title": "Ring 3 Part 2",
+    "Price": 25,
+    "Discount": 5,
+    "ImageUri": "images/4.png",
+    "Desp": "Autumn Yellow Leaves | George Hodan"
+  },
+  {
+    "MenuType": "Main",
+    "Style": "East",
+    "MenuId": "0005",
+    "Title": "Ring 3 Part 3",
+    "Price": 25,
+    "Discount": 5,
+    "ImageUri": "images/5.png",
+    "Desp": "Autumn Yellow Leaves | George Hodan"
+  },
+  {
+    "MenuType": "Drink",
+    "Style": "East",
+    "MenuId": "0006",
+    "Title": "Ring 3 Part 3",
+    "Price": 25,
+    "Discount": 5,
+    "ImageUri": "images/6.png",
+    "Desp": "Autumn Yellow Leaves | George Hodan"
+  }
+]

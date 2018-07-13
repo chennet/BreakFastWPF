@@ -1,0 +1,281 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:BreakFastWPF">
+    <!-- SHOPPING CART TEMPLATE -->
+
+    <Style x:Key="ShoppingCartStyle" TargetType="{x:Type ListBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBox}" >
+                    <Border BorderBrush="Gray"
+                            BorderThickness="1"
+                            CornerRadius="6"
+                            Background="{DynamicResource ShoppingCartGradient}" >
+                        <ScrollViewer>
+                            <WrapPanel ItemHeight="70"
+                                       ItemWidth="70"
+                                       Margin="0,25,0,0"
+                                       IsItemsHost="True"
+                                       Orientation="Horizontal"
+                                       HorizontalAlignment="Center" />
+                        </ScrollViewer>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- SHOPPING CART TRIGGERS -->
+
+    <Style x:Key="ShoppingCartItem"
+    TargetType="{x:Type ListBoxItem}">
+        <Setter Property="BorderBrush"
+       Value="Transparent" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                    <Border x:Name="ContentBorder" Opacity="0.85">
+                        <ContentPresenter />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="ContentBorder"
+                                    Property="Opacity"
+                                    Value="1.0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- PROGRESS BAR STYLE -->
+
+    <Style TargetType="{x:Type ProgressBar}" >
+        <Setter Property="Background"
+       Value="{DynamicResource ComboBoxGradient}" />
+        <Setter Property="BorderThickness"
+       Value="1" />
+        <Setter Property="BorderBrush"
+       Value="Gray" />
+        <Setter Property="Foreground"
+       Value="MidnightBlue" />
+    </Style>
+
+    <!--SCROLL BAR TEMPLATES -->
+
+    <Style x:Key="Scrollbar_LineButton"
+    TargetType="{x:Type RepeatButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border BorderBrush="Transparent"
+                BorderThickness="1"
+                CornerRadius="6"
+                Background="{DynamicResource ButtonGradient}">
+                        <ContentPresenter x:Name="ContentSite" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MinHeight"
+       Value="12" />
+        <Setter Property="MinWidth"
+       Value="12" />
+        <Setter Property="Foreground"
+       Value="Gray" />
+        <Setter Property="FontSize"
+       Value="6pt" />
+        <Setter Property="FontWeight"
+       Value="Bold" />
+        <Setter Property="FontFamily"
+       Value="Lucida Sans" />
+        <Setter Property="VerticalAlignment"
+       Value="Center" />
+        <Setter Property="HorizontalAlignment"
+       Value="Center" />
+    </Style>
+
+    <Style x:Key="ScrollBar_TrackRepeater"
+    TargetType="{x:Type RepeatButton}">
+        <Setter Property="IsTabStop"
+       Value="false" />
+        <Setter Property="Focusable"
+       Value="false" />
+        <Setter Property="Command"
+       Value="ScrollBar.PageUpCommand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle Fill="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ScrollBar_UpTrack"
+    BasedOn="{StaticResource ScrollBar_TrackRepeater}"
+    TargetType="{x:Type RepeatButton}">
+        <Setter Property="Command"
+       Value="ScrollBar.PageUpCommand" />
+    </Style>
+
+    <Style x:Key="ScrollBar_DownTrack"
+    BasedOn="{StaticResource ScrollBar_TrackRepeater}"
+    TargetType="{x:Type RepeatButton}">
+        <Setter Property="Command"
+       Value="ScrollBar.PageDownCommand" />
+    </Style>
+
+    <Style x:Key="ScrollBar_LeftTrack"
+    BasedOn="{StaticResource ScrollBar_TrackRepeater}"
+    TargetType="{x:Type RepeatButton}">
+        <Setter Property="Command"
+       Value="ScrollBar.PageLeftCommand" />
+    </Style>
+
+    <Style x:Key="ScrollBar_RightTrack"
+    BasedOn="{StaticResource ScrollBar_TrackRepeater}"
+    TargetType="{x:Type RepeatButton}">
+        <Setter Property="Command"
+       Value="ScrollBar.PageRightCommand" />
+    </Style>
+
+    <Style x:Key="ScrollBar_VerticalThumb"
+    TargetType="{x:Type Thumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border CornerRadius="6"
+                BorderBrush="Transparent"
+                BorderThickness="1"
+                Background="{DynamicResource VerticalScrollGradient}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MinHeight"
+       Value="10" />
+        <Setter Property="MinWidth"
+       Value="10" />
+    </Style>
+
+    <Style x:Key="ScrollBar_HorizontalThumb"
+    TargetType="{x:Type Thumb}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border CornerRadius="6"
+                BorderBrush="Transparent"
+                BorderThickness="1"
+                Background="{DynamicResource ButtonGradient}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="MinHeight"
+       Value="10" />
+        <Setter Property="MinWidth"
+       Value="10" />
+    </Style>
+
+    <Style TargetType="{x:Type ScrollBar}">
+        <Setter Property="Background"
+       Value="Transparent" />
+        <Setter Property="MinWidth"
+       Value="10" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="10"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="1"
+                   BorderThickness="0"
+                   Background="Transparent"
+                   CornerRadius="4"/>
+                        <RepeatButton Grid.Row="0"
+                   Style="{DynamicResource Scrollbar_LineButton}"
+                   Command="ScrollBar.LineUpCommand"
+                   Content=" ^"/>
+                        <Track Grid.Row="1"
+                   Name="PART_Track"
+                   IsDirectionReversed="True">
+                            <Track.IncreaseRepeatButton>
+                                <RepeatButton Style="{DynamicResource ScrollBar_DownTrack}"/>
+                            </Track.IncreaseRepeatButton>
+                            <Track.DecreaseRepeatButton>
+                                <RepeatButton Style="{DynamicResource ScrollBar_UpTrack}"/>
+                            </Track.DecreaseRepeatButton>
+                            <Track.Thumb>
+                                <Thumb Style="{DynamicResource ScrollBar_VerticalThumb}"/>
+                            </Track.Thumb>
+                        </Track>
+                        <RepeatButton Grid.Row="2"
+                   Style="{DynamicResource Scrollbar_LineButton}"
+                   Command="ScrollBar.LineDownCommand"
+                   Content=" v"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="Orientation"
+          Value="Horizontal" >
+                <Setter Property="Background"
+             Value="Transparent" />
+                <Setter Property="MinHeight"
+             Value="10" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="12"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="12" />
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="12" />
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Column="1"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         CornerRadius="4"/>
+                                <RepeatButton Grid.Column="0"
+                         Style="{DynamicResource Scrollbar_LineButton}"
+                         Command="ScrollBar.LineLeftCommand"
+                         Content=" &lt;"/>
+                                <Track Grid.Column="1"
+                         Name="PART_Track">
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Style=
+                               "{DynamicResource ScrollBar_RightTrack}"/>
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Style=
+                               "{DynamicResource ScrollBar_LeftTrack}"/>
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb Style=
+                               "{DynamicResource ScrollBar_HorizontalThumb}"/>
+                                    </Track.Thumb>
+                                </Track>
+                                <RepeatButton Grid.Column="2"
+                         Style="{DynamicResource Scrollbar_LineButton}"
+                         Command="ScrollBar.LineRightCommand"
+                         Content=" &gt;"/>
+
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>
