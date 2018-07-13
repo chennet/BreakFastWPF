@@ -6,7 +6,7 @@
     "Title": "Ring 1",
     "Price": 25,
     "Discount": 5,
-    "ImageUri": "images/1.png",
+    "ImageUri": "1.png",
     "Desp": "Autumn Yellow Leaves | George Hodan"
   },
   {
@@ -16,7 +16,7 @@
     "Title": "Ring 2",
     "Price": 25,
     "Discount": 5,
-    "ImageUri": "images/2.png",
+    "ImageUri": "\\images\\2.png",
     "Desp": "Autumn Yellow Leaves | George Hodan"
   },
   {

@@ -2,10 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace BreakFastWPF.Models
 {
@@ -19,7 +23,19 @@ namespace BreakFastWPF.Models
         public string Title { get; set; }
         public int Price { get; set; }
         public int Discount { get; set; }
-        public string ImageUri { get; set; }
+        private string imgdir = "";
+        private string newpath = "";
+        public string ImageUri
+        {
+            get
+            {
+                    return @newpath;
+            }
+            set
+            {
+                newpath = imgdir + value;
+            }
+        }
         public string Desp { get; set; }
     }
 
@@ -51,6 +67,5 @@ namespace BreakFastWPF.Models
         }
 
     }
-
 
 }

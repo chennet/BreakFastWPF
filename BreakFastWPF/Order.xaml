@@ -71,7 +71,7 @@
                 </materialDesign:ColorZone>
                 <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -395,18 +395,46 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <!--
-                <TextBlock Name="selText" Margin="5"/>
-                -->
-                <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                         Style="{DynamicResource ShoppingCartStyle}"
-                         Name="ShoppingCartListBox"
-                         Width="160"
-                         DataContext="{Binding Source={StaticResource ShoppingCart}}"
-                         ItemContainerStyle="{DynamicResource ShoppingCartItem}"
-                         ItemsSource="{Binding}" />
-            </ScrollViewer>
+<!-- Shopping cart start -->
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Width="220" PanningMode="VerticalOnly">
+                            <Grid Margin="10">
+                                <ItemsControl x:Name="wrapcartitem" ItemsSource="{Binding Source={StaticResource ShoppingCart}}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel Orientation="Horizontal" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <materialDesign:Card Margin="8">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="70" />
+                                                        <RowDefinition Height="*" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Image Source="{Binding Path=Photo}" Height="70" Width="98" Stretch="UniformToFill" />
+                                                    <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                                            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                            Margin="0 0 8 -10"
+                                                            Click="RemoveFromShoppingCart"
+                                                            Tag="{Binding}">
+                                                        <materialDesign:PackIcon Kind="Minus" />
+                                                    </Button>
+                                                    <StackPanel Grid.Row="1" Margin="4 10 4 4" >
+                                                        <TextBlock FontSize="12" Text="{Binding Path=ItemType.Description}" Width="110" />
+                                                    </StackPanel>
+                                                </Grid>
+                                            </materialDesign:Card>
+                                            <!--
+                            </smtx:XamlDisplay>
+                            -->
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </Grid>
+                        </ScrollViewer>
+                        <!-- Shopping cart End -->
             <StackPanel Grid.Row="1">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -416,11 +444,11 @@
                     </Grid.RowDefinitions>
                     <TextBlock Margin="5" Text="Total:" />
                     <TextBlock Margin="10" Grid.Row="1" Name="total_cost" FontSize="24" Foreground="Yellow" HorizontalAlignment="Right">0</TextBlock>
-                    <Button Margin="5" Grid.Row="2" Name="CheckOutButton" Click="CheckOut_Button">Check Out</Button>
+                    <Button Margin="5" Grid.Row="2" Name="CheckOutButton" Click="CheckOut_Button" IsEnabled="False">Check Out</Button>
                 </Grid>
             </StackPanel>
         </Grid>
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly">
             <Grid Margin="10">
                 <ItemsControl x:Name="wrapitem" ItemsSource="{Binding Source={StaticResource ObsMenu}}">
                     <ItemsControl.ItemsPanel>
@@ -440,7 +468,7 @@
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Image Source="{Binding ImageUri}" Height="140" Width="196" Stretch="UniformToFill" />
+                                                <Image Source="{Binding ImageUri}" Height="140" Width="196" Stretch="UniformToFill" />
                                     <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                                                 HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                 Margin="0 0 16 -20"
@@ -449,8 +477,8 @@
                                         <materialDesign:PackIcon Kind="CartPlus" />
                                     </Button>
                                     <StackPanel Grid.Row="1" Margin="8 24 8 0" >
-                                        <TextBlock FontWeight="Bold" Text="{Binding Title}" />
-                                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Desp}" />
+                                        <TextBlock FontWeight="Bold" FontSize="20" Text="{Binding Title}" />
+                                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Desp}" Width="200" Margin="0 8 0 0"/>
                                     </StackPanel>
                                     <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
                                         <Button Style="{StaticResource MaterialDesignToolButton}" 

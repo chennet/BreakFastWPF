@@ -49,6 +49,9 @@ namespace BreakFastWPF
                 total += ShoppingCart[x].ItemType.Price;
             }
             total_cost.Text = total.ToString();
+            if (ShoppingCart.Count == 0)
+                CheckOutButton.IsEnabled = false;
+            else CheckOutButton.IsEnabled = true;
 
         }
 
@@ -63,13 +66,20 @@ namespace BreakFastWPF
             Models.Menu selItem = ((Button)sender).Tag as Models.Menu;
             ItemBase item = new CartItem(selItem.ImageUri, selItem.MenuId, selItem.Title, selItem.Price);
             ShoppingCart.Add(item);
-            ShoppingCartListBox.ScrollIntoView(item);
-            ShoppingCartListBox.SelectedItem = item;
+            //ShoppingCartListBox.ScrollIntoView(item);
+            //ShoppingCartListBox.SelectedItem = item;
 
         }
 
         private void CheckOut_Button(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void RemoveFromShoppingCart(object sender, RoutedEventArgs e)
+        {
+            ItemBase item = ((Button)sender).Tag as ItemBase;
+            ShoppingCart.Remove(item);
 
         }
     }
