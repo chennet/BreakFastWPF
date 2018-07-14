@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\
+D:\VS-Sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\
 BreakFastWPF
 none
 false
 DEBUG;TRACE
-C:\vs-sample\BreakFastWPF\BreakFastWPF\App.xaml
+D:\VS-Sample\BreakFastWPF\BreakFastWPF\App.xaml
 6-679765167
 
-17149408618
-171636568652
+17-415545305
+17550792690
 Common\template_order.xaml;Order.xaml;Cards.xaml;Common\template.xaml;Common\styles.xaml;MainWindow.xaml;
 
 False

@@ -23,40 +23,50 @@
     "MenuType": "Main",
     "Style": "West",
     "MenuId": "0003",
-    "Title": "Ring 3 Part 1",
-    "Price": 18,
+    "Title": "豉油皇牛柳米漢堡",
+    "Price": 30,
     "Discount": 5,
-    "ImageUri": "Assets/3.png",
-    "Desp": "Autumn Yellow Leaves | George Hodan"
+    "ImageUri": "/BreakFastWPF;component/images/130d5d1a248000004316.jpg",
+    "Desp": "喜生米漢堡堅持選用台灣道地好米、手工挑掉九層塔梗，到餡料絕不過夜，精選大安溪無污染的台灣米為原料，在歷經一年的層層試驗後，達到米板..."
   },
   {
     "MenuType": "Main",
     "Style": "West",
     "MenuId": "0004",
-    "Title": "Ring 3 Part 2",
-    "Price": 30,
+    "Title": "豬排漢堡",
+    "Price": 35,
     "Discount": 5,
-    "ImageUri": "Assets/4.png",
-    "Desp": "Autumn Yellow Leaves | George Hodan"
+    "ImageUri": "/BreakFastWPF;component/images/whk063-104b.jpg",
+    "Desp": "大里肌肉、漢堡麵包抹上美乃滋，放入美生菜、豬排、蕃茄、小黃瓜和苜蓿芽"
   },
   {
     "MenuType": "Main",
     "Style": "East",
     "MenuId": "0005",
-    "Title": "Ring 3 Part 3",
+    "Title": "素肉鬆蛋餅捲",
     "Price": 25,
-    "Discount": 5,
-    "ImageUri": "Assets/5.png",
-    "Desp": "Autumn Yellow Leaves | George Hodan"
+    "Discount": 0,
+    "ImageUri": "/BreakFastWPF;component/images/whk066-085b.jpg",
+    "Desp": "雞蛋、蔥花、蛋餅皮、素肉鬆"
   },
   {
     "MenuType": "Drink",
     "Style": "East",
     "MenuId": "0006",
-    "Title": "Ring 3 Part 3",
-    "Price": 25,
-    "Discount": 5,
-    "ImageUri": "Assets/6.png",
-    "Desp": "Autumn Yellow Leaves | George Hodan"
+    "Title": "火腿蛋餅",
+    "Price": 20,
+    "Discount": 0,
+    "ImageUri": "/BreakFastWPF;component/images/whk066-083.jpg",
+    "Desp": "雞蛋、蔥花、蛋餅皮、火腿片"
+  },
+  {
+    "MenuType": "Drink",
+    "Style": "East",
+    "MenuId": "0007",
+    "Title": "饅頭肉鬆夾蛋",
+    "Price": 30,
+    "Discount": 0,
+    "ImageUri": "/BreakFastWPF;component/images/whk066-086.jpg",
+    "Desp": "雞蛋、蔥花、饅頭、肉鬆"
   }
 ]

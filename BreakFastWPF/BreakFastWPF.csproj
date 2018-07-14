@@ -53,8 +53,8 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+    <Reference Include="MaterialDesignColors, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.1.1.3\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf, Version=2.4.0.1044, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignThemes.2.4.0.1044\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
@@ -188,6 +188,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\yqn54-014.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\130d5d1a248000004316.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\whk063-104b.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\whk066-085b.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\whk066-083.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\whk066-086.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
