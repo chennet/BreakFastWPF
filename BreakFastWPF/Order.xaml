@@ -32,17 +32,16 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <materialDesign:DialogHost Identifier="RootDialog"
+    <materialDesign:DialogHost Name="CheckoutDialog" Identifier="RootDialog"
             SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DrawerHost
                 IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
                 <DockPanel MinWidth="212">
-                    <ToggleButton
-                            Style="{StaticResource MaterialDesignHamburgerToggleButton}"
-                            DockPanel.Dock="Top" HorizontalAlignment="Right"
-                            Margin="16"
-                            IsChecked="{Binding IsChecked, ElementName=MenuToggleButton, Mode=TwoWay}" />
+                    <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                                  DockPanel.Dock="Top" HorizontalAlignment="Right"
+                                  Margin="16"
+                                  IsChecked="{Binding IsChecked, ElementName=MenuToggleButton, Mode=TwoWay}" />
                     <Grid>
                         <TextBlock Text="Tools" HorizontalAlignment="Center"/>
                         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -57,8 +56,8 @@
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
                 <materialDesign:ColorZone Mode="PrimaryDark" Padding="16"
-                        Grid.Row="0" VerticalAlignment="Stretch"
-                        Grid.ColumnSpan="2" DockPanel.Dock="Top">
+                                          Grid.Row="0" VerticalAlignment="Stretch"
+                                          Grid.ColumnSpan="2" DockPanel.Dock="Top">
                     <DockPanel>
                         <StackPanel Orientation="Horizontal" materialDesign:RippleAssist.IsCentered="True">
                             <ToggleButton x:Name="MenuToggleButton"
@@ -70,15 +69,15 @@
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-    <!--
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <!--
         <WrapPanel Orientation="Horizontal" Margin="0 0 8 8">
             <smtx:XamlDisplay Key="cards_1" Margin="4 4 0 0" VerticalContentAlignment="Top">
                 <materialDesign:Card Width="200">
@@ -390,12 +389,12 @@
             </smtx:XamlDisplay>
         </WrapPanel>
         -->
-        <Grid Grid.Row="1" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-<!-- Shopping cart start -->
+                    <Grid Grid.Row="1" Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <!-- Shopping cart start -->
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Width="220" PanningMode="VerticalOnly">
                             <Grid Margin="10">
                                 <ItemsControl x:Name="wrapcartitem" ItemsSource="{Binding Source={StaticResource ShoppingCart}}">
@@ -426,102 +425,95 @@
                                                     </StackPanel>
                                                 </Grid>
                                             </materialDesign:Card>
-                                            <!--
-                            </smtx:XamlDisplay>
-                            -->
+                                            <!-- </smtx:XamlDisplay> -->
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
                             </Grid>
                         </ScrollViewer>
                         <!-- Shopping cart End -->
-            <StackPanel Grid.Row="1">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <TextBlock Margin="5" Text="Total:" />
-                    <TextBlock Margin="10" Grid.Row="1" Name="total_cost" FontSize="24" Foreground="Yellow" HorizontalAlignment="Right">0</TextBlock>
-                    <Button Margin="5" Grid.Row="2" Name="CheckOutButton" Click="CheckOut_Button" IsEnabled="False">Check Out</Button>
-                </Grid>
-            </StackPanel>
-        </Grid>
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly">
-            <Grid Margin="10">
-                <ItemsControl x:Name="wrapitem" ItemsSource="{Binding Source={StaticResource ObsMenu}}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <!--
-                            <smtx:XamlDisplay Key="cards_1" Margin="5" VerticalContentAlignment="Top">
-                            -->
-                            <materialDesign:Card Margin="15">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="140" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="1">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Margin="5" Text="Total:" />
+                                <TextBlock Margin="10" Grid.Row="1" Name="total_cost" FontSize="24" Foreground="Yellow" HorizontalAlignment="Right">0</TextBlock>
+                                <Button Margin="5" Grid.Row="2" Name="CheckOutButton" Click="CheckOut_Button" IsEnabled="False">Check Out</Button>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                    <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" PanningMode="VerticalOnly">
+                        <Grid Margin="10">
+                            <ItemsControl x:Name="wrapitem" ItemsSource="{Binding Source={StaticResource ObsMenu}}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <!--
+                                        <smtx:XamlDisplay Key="cards_1" Margin="5" VerticalContentAlignment="Top">
+                                        -->
+                                        <materialDesign:Card Margin="15">
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="140" />
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
                                                 <Image Source="{Binding ImageUri}" Height="140" Width="196" Stretch="UniformToFill" />
-                                    <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                                                HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                                Margin="0 0 16 -20"
-                                            Click="AddToShoppingCart"
-                                            Tag="{Binding}">
-                                        <materialDesign:PackIcon Kind="CartPlus" />
-                                    </Button>
-                                    <StackPanel Grid.Row="1" Margin="8 24 8 0" >
-                                        <TextBlock FontWeight="Bold" FontSize="20" Text="{Binding Title}" />
-                                        <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Desp}" Width="200" Margin="0 8 0 0"/>
-                                    </StackPanel>
-                                    <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
-                                        <Button Style="{StaticResource MaterialDesignToolButton}" 
-                                                    Width="30" Padding="2 0 2 0"
-                                                    materialDesign:RippleAssist.IsCentered="True">
-                                            <materialDesign:PackIcon Kind="ShareVariant" />
-                                        </Button>
-                                        <Button Style="{StaticResource MaterialDesignToolButton}" 
-                                                    Width="30" Padding="2 0 2 0"
-                                                    materialDesign:RippleAssist.IsCentered="True">
-                                            <materialDesign:PackIcon Kind="Heart" />
-                                        </Button>
-                                        <materialDesign:PopupBox Style="{StaticResource MaterialDesignToolPopupBox}" Padding="2 0 2 0">
-                                            <StackPanel>
-                                                <Button Content="More"/>
-                                                <Button Content="Options"/>
-                                            </StackPanel>
-                                        </materialDesign:PopupBox>
-                                    </StackPanel>
-                                </Grid>
-                            </materialDesign:Card>
-                            <!--
-                            </smtx:XamlDisplay>
-                            -->
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </Grid>
-        </ScrollViewer>
-    </Grid>
+                                                <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                        Margin="0 0 16 -20"
+                                                        Click="AddToShoppingCart"
+                                                        Tag="{Binding}">
+                                                    <materialDesign:PackIcon Kind="CartPlus" />
+                                                </Button>
+                                                <StackPanel Grid.Row="1" Margin="8 24 8 0" >
+                                                    <TextBlock FontWeight="Bold" FontSize="20" Text="{Binding Title}" />
+                                                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Desp}" Width="200" Margin="0 8 0 0"/>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
+                                                    <Button Style="{StaticResource MaterialDesignToolButton}"
+                                                            Width="30" Padding="2 0 2 0"
+                                                            materialDesign:RippleAssist.IsCentered="True">
+                                                        <materialDesign:PackIcon Kind="ShareVariant" />
+                                                    </Button>
+                                                    <Button Style="{StaticResource MaterialDesignToolButton}" 
+                                                            Width="30" Padding="2 0 2 0"
+                                                            materialDesign:RippleAssist.IsCentered="True">
+                                                        <materialDesign:PackIcon Kind="Heart" />
+                                                    </Button>
+                                                    <materialDesign:PopupBox Style="{StaticResource MaterialDesignToolPopupBox}" Padding="2 0 2 0">
+                                                        <StackPanel>
+                                                            <Button Content="More"/>
+                                                            <Button Content="Options"/>
+                                                        </StackPanel>
+                                                    </materialDesign:PopupBox>
+                                                </StackPanel>
+                                            </Grid>
+                                        </materialDesign:Card>
+                                        <!-- </smtx:XamlDisplay> -->
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
+                    </ScrollViewer>
+                </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>
         <materialDesign:DialogHost.DialogContent>
-            <StackPanel Margin="16">
-                <ProgressBar
-                        Style="{DynamicResource MaterialDesignCircularProgressBar}"
-                        HorizontalAlignment="Center" Margin="16"
-                        IsIndeterminate="True" Value="0" />
-                <Button Style="{StaticResource MaterialDesignFlatButton}"
-                        IsDefault="True"
-                        Command="materialDesign:DialogHost.CloseDialogCommand"
-                        Content="關閉">
-                </Button>
+            <StackPanel Margin="16" Orientation="Vertical">
+                <Label Content="Add custom date" FontSize="16" />
+                <DatePicker />
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="ACCEPT" Style="{DynamicResource MaterialDesignFlatButton}" IsDefault="True" Margin="0,8,8,0" Command="materialDesign:DialogHost.CloseDialogCommand" CommandParameter="True" />
+                    <Button Content="CANCEL" Style="{DynamicResource MaterialDesignFlatButton}" IsCancel="True" Margin="0,8,8,0" Command="materialDesign:DialogHost.CloseDialogCommand" CommandParameter="False" />
+                </StackPanel>
             </StackPanel>
         </materialDesign:DialogHost.DialogContent>
     </materialDesign:DialogHost>

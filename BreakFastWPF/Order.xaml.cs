@@ -73,7 +73,7 @@ namespace BreakFastWPF
 
         private void CheckOut_Button(object sender, RoutedEventArgs e)
         {
-
+            CheckoutDialog.IsOpen = !CheckoutDialog.IsOpen;
         }
 
         private void RemoveFromShoppingCart(object sender, RoutedEventArgs e)
