@@ -1,12 +1,9 @@
 ﻿<Application x:Class="BreakFastWPF.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:BreakFastWPF.Models"
-             Startup="AppStartup">
-            <!--        
-             StartupUri="Cards.xaml">
-            -->
-
+             xmlns:data="clr-namespace:BreakFastWPF.Models"
+             StartupUri="MainWindow.xaml">
+    <!-- Startup="AppStartup" -->
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -14,10 +11,11 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Brown.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="/Common/CommResourses.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <ObjectDataProvider x:Name="ShoppingCartODP"
                                 x:Key="ShoppingCart"
-                                ObjectType="{x:Type local:CartList}" />
+                                ObjectType="{x:Type data:CartList}" />
         </ResourceDictionary>
     </Application.Resources>
 </Application>

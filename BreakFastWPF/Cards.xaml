@@ -1,4 +1,4 @@
-﻿<Window x:Class="BreakFastWPF.Cards"
+﻿<UserControl x:Class="BreakFastWPF.Cards"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,8 +16,8 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{StaticResource MaterialDesignFont}"
         mc:Ignorable="d" 
-        d:DesignHeight="400" d:DesignWidth="1200" WindowState="Maximized" ResizeMode="NoResize" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-    <Window.Resources>
+        d:DesignHeight="400" d:DesignWidth="1200">
+    <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
@@ -30,7 +30,7 @@
             </ResourceDictionary.MergedDictionaries>
             
         </ResourceDictionary>
-    </Window.Resources>
+    </UserControl.Resources>
 
     <materialDesign:DialogHost Identifier="RootDialog"
             SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
@@ -497,5 +497,5 @@
             </StackPanel>
         </materialDesign:DialogHost.DialogContent>
     </materialDesign:DialogHost>
-</Window>
+</UserControl>
 

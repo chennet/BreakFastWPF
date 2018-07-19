@@ -21,7 +21,7 @@ namespace BreakFastWPF
     /// <summary>
     /// Cards.xaml 的互動邏輯
     /// </summary>
-    public partial class Cards : Window
+    public partial class Cards : UserControl
     {
         //private List<Book> Books;
         //private ObservableCollection<Book> ObsBooks;

@@ -21,12 +21,11 @@ namespace BreakFastWPF
     /// <summary>
     /// Cards.xaml 的互動邏輯
     /// </summary>
-    public partial class Order : Window
+    public partial class Order : UserControl
     {
         //private List<Book> Books;
         //private ObservableCollection<Book> ObsBooks;
         public CartList ShoppingCart;
-        //ObservableCollection<CartList> mycart = new ObservableCollection<CartList> { };
 
         public Order()
         {
@@ -34,6 +33,13 @@ namespace BreakFastWPF
             //Books = BookManager.GetBooks();
             //wrapitem.ItemsSource = Books; 
             //this.DataContext = Books;
+            //ObservableCollection<CartList> mycart = new ObservableCollection<CartList> { };
+            ObjectDataProvider menuProvider = this.Resources["Menu"] as ObjectDataProvider;
+            menuProvider = Resources["ShoppingCart"] as ObjectDataProvider;
+            CartList cartlist = menuProvider.Data as CartList;
+            ShoppingCart = cartlist;
+            ((INotifyPropertyChanged)ShoppingCart).PropertyChanged += new PropertyChangedEventHandler(ShoppingCartChanged);
+
         }
 
         public void Window1_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -48,6 +54,7 @@ namespace BreakFastWPF
             {
                 total += ShoppingCart[x].ItemType.Price;
             }
+            selcount.Text = ShoppingCart.Count.ToString();
             total_cost.Text = total.ToString();
             if (ShoppingCart.Count == 0)
                 CheckOutButton.IsEnabled = false;
@@ -73,7 +80,7 @@ namespace BreakFastWPF
 
         private void CheckOut_Button(object sender, RoutedEventArgs e)
         {
-            CheckoutDialog.IsOpen = !CheckoutDialog.IsOpen;
+            //CheckoutDialog.IsOpen = !CheckoutDialog.IsOpen;
         }
 
         private void RemoveFromShoppingCart(object sender, RoutedEventArgs e)
