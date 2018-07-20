@@ -28,7 +28,7 @@ namespace BreakFastWPF
             {
                 //note you can use the message queue from any thread, but just for the demo here we 
                 //need to get the message queue from the snackbar, so need to be on the dispatcher
-                MainSnackbar.MessageQueue.Enqueue("Welcome to Material Design In XAML Tookit");
+                MainSnackbar.MessageQueue.Enqueue("歡迎進入 BreakFast 自助點餐系統");
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
             DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue);

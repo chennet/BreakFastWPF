@@ -41,6 +41,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -129,6 +130,10 @@
     <Page Include="AppProgressDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Common\CartListResourses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Common\CommResourses.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -262,6 +267,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\whk066-086.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\200.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\insertCoin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\hamburger-16.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\stop.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

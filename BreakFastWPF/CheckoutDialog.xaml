@@ -9,7 +9,7 @@
              xmlns:common="clr-namespace:BreakFastWPF.Common"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             d:DesignHeight="500" d:DesignWidth="500">
+             d:DesignHeight="500" d:DesignWidth="600">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,12 +18,21 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.TextBox.xaml" />
                 <ResourceDictionary Source="Common/template_order.xaml" />
                 <ResourceDictionary Source="Common/styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Margin" Value="0 8 0 8" />
+                <Setter Property="TextAlignment" Value="Right" />
+                <Setter Property="Foreground" Value="Brown" />
+                <Setter Property="Width" Value="150" />
+                <Setter Property="FontSize" Value="45" />
+                <Setter Property="IsEnabled" Value="False" />
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="16">
+    <Grid Margin="16" DataContext="{Binding Source={StaticResource PSCommDataSource}}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
@@ -31,11 +40,20 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <!-- Shopping cart start -->
-        <TextBlock Name="ordercount" Margin="10" />
-        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="ordercount" Margin="10" Width="100" FontSize="16"/>
+            <TextBlock Grid.Column="2" Name="PSStatusTextBlock" Margin="10" FontSize="16" HorizontalAlignment="Right" Width="100" Foreground="Red" />
+        </Grid>
+        <StackPanel Grid.Row="1">
             <!--
                 <TextBlock Name="selText" Margin="5"/>
                 -->
+            <!--
             <ListBox ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                      BorderThickness="1"
                      BorderBrush="Black"
@@ -46,7 +64,9 @@
                      Margin="10 10 10 20"
                      Height="150"
                      Width="200" ScrollViewer.VerticalScrollBarVisibility="Visible"/>
-        </ScrollViewer>
+            -->
+            <Image Name="checkoutimage" Source="images/insertCoin.png" Width="150" Margin="50 20 50 20"/>
+        </StackPanel>
         <Grid Grid.Row="2" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -54,13 +74,15 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
-            <TextBlock FontSize="18" Text="應付金額" Margin="5"/>
-            <TextBlock Grid.Row="1" Name="ordertotal" FontSize="40" HorizontalAlignment="Right" Margin="5"></TextBlock>
-            <TextBlock Grid.Row="2" FontSize="18" Text="已付金額" Margin="5"/>
-            <TextBlock Grid.Row="3" Name="orderpaid" FontSize="40" HorizontalAlignment="Right" Margin="5">0</TextBlock>
+            <TextBlock FontSize="18" Text="請投金額"/>
+            <TextBox Grid.Row="1" Name="ordertotal"></TextBox>
+            <TextBlock Grid.Row="2" FontSize="18" Text="已投金額"/>
+            <TextBox Grid.Row="3" Name="orderpaid">0</TextBox>
         </Grid>
-        <StackPanel Orientation="Horizontal" Grid.Row="3"
-                    Margin="0 16 0 0">
+        <StackPanel Grid.Row="3"
+                    Margin="0 16 30 0"
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
             <!--
             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}"
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
@@ -70,7 +92,7 @@
                 ACCEPT
             </Button>
             -->
-            <Button IsCancel="True" Margin="8 0 0 0"
+            <Button IsCancel="True" Margin="8 0 0 0" Click="TradCancelButton"
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>

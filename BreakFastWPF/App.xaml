@@ -12,10 +12,13 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Brown.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="/Common/CommResourses.xaml"/>
+                <ResourceDictionary Source="/Common/CartListResourses.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <!--
             <ObjectDataProvider x:Name="ShoppingCartODP"
                                 x:Key="ShoppingCart"
                                 ObjectType="{x:Type data:CartList}" />
+            -->
         </ResourceDictionary>
     </Application.Resources>
 </Application>

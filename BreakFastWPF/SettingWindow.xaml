@@ -37,7 +37,7 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="16" VerticalAlignment="Top" DataContext="{Binding Source={StaticResource PSCommDataSource}}">
+    <Grid Margin="20" VerticalAlignment="Top" DataContext="{Binding Source={StaticResource PSCommDataSource}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="155" />
@@ -51,24 +51,16 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}">Select COM port</TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
-            <ComboBox Name="ComPortBox" materialDesign:HintAssist.Hint="Port">
-            </ComboBox>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="10">Select COM port</TextBlock>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
+            <ComboBox Name="ComPortBox" materialDesign:HintAssist.Hint="Port"  Margin="10"/>
+            <Button Name="OpenCloseButton" Grid.Row="2" Click="OpenCloseComPort" Margin="10">Connect</Button>
         </StackPanel>
-        <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="32 0 0 0">Multi-line</TextBlock>
-
-        <smtx:XamlDisplay Key="fields_3" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" Margin="32 0 0 0">
-            <TextBox Name="MsgBox" TextWrapping="Wrap" VerticalAlignment="Stretch"
-                     MinWidth="280"
-                     AcceptsReturn="True"
-                     VerticalScrollBarVisibility="Auto"
-                     SpellCheck.IsEnabled="True"
-                     materialDesign:HintAssist.Hint="Multiline text"
-                     Height="100"></TextBox>
-        </smtx:XamlDisplay>
-
-        <Button Grid.Row="2" Click="Open_ComPort">Open</Button>
+        <TextBox Name="MsgBox" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" 
+                 TextWrapping="Wrap" VerticalAlignment="Top"
+                 MinWidth="100"
+                 materialDesign:HintAssist.Hint="Message..."
+                 Height="300"></TextBox>
 
     </Grid>
 </UserControl>

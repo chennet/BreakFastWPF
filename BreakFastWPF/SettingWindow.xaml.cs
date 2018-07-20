@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO.Ports;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -26,12 +27,13 @@ namespace BreakFastWPF
     public partial class SettingWindow : UserControl
     {
         PSCommModel pscomm;
-
+        [DllImport("msvcr120.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int _fpreset();
         public SettingWindow()
         {
             InitializeComponent();
             pscomm = App.Current.Resources["PSCommDataSource"] as PSCommModel;
-
+            ComPortBox.IsEnabled = true;
             DataContext = new SettingWindowModel();
 
             string[] ports = SerialPort.GetPortNames();
@@ -41,8 +43,6 @@ namespace BreakFastWPF
             {
                 if (port.Substring(0, 3) == "COM")
                     ComPortBox.Items.Add(port);
-                //ComPortListBox.Items.Add(port);
-                //Console.WriteLine(port);
             }
             ComPortBox.SelectedIndex = 0;
         }
@@ -51,16 +51,42 @@ namespace BreakFastWPF
         {
         }
 
-        private void Open_ComPort(object sender, RoutedEventArgs e)
+        private void OpenCloseComPort(object sender, RoutedEventArgs e)
         {
+            //ComPortBox.IsEnabled = false;
             string nCom = ComPortBox.Items[ComPortBox.SelectedIndex].ToString();
+            //string nCom = "COM3";
             string bRate = "9600,E,8,1";
-            bool rtn = pscomm.PSOpenPort(nCom, bRate);
-            if (rtn){
-                pscomm.isCommInit = true;
-                //Display_MsgBox("Open COM port [" + nCom + "] - Success.");
-                int rtn_code = pscomm.initPS3();
+            if (OpenCloseButton.Content.ToString() == "Connect")
+            {
+                bool rtn = pscomm.PSOpenPort(nCom, bRate);
+                if (rtn)
+                {
+                    Display_MsgBox("Open port [" + nCom + "] - connected.");
+                    Display_MsgBox("PS machine initializing...");
+                    int rtn_code = pscomm.initPS3();
+                    if (rtn_code == PSCommModel.PSCons.PS_SUCCESS)
+                    {
+                        pscomm.isCommInit = true;
+                        Display_MsgBox("PS machine initialized.");
+                        OpenCloseButton.Content = "Disconnect";
+                    }
+                    else
+                    {
+                        Display_MsgBox("PS machine initial failed.");
+                        pscomm.PSClosePort();
+                        Display_MsgBox("Connection closed.");
+                    }
+                }
+                else { Display_MsgBox("Port [" + nCom + "] - open failed."); }
             }
+            else
+            {
+                pscomm.PSClosePort();
+                Display_MsgBox("Open port [" + nCom + "] - disconnected.");
+                OpenCloseButton.Content = "Connect";
+            }
+            _fpreset();
         }
 
         private void Display_MsgBox(string msg)

@@ -25,19 +25,18 @@ namespace BreakFastWPF
     {
         //private List<Book> Books;
         //private ObservableCollection<Book> ObsBooks;
-        public CartList ShoppingCart;
+        //public CartList ShoppingCart;
+        CartList ShoppingCart;
 
         public Order()
         {
             InitializeComponent();
-            //Books = BookManager.GetBooks();
-            //wrapitem.ItemsSource = Books; 
-            //this.DataContext = Books;
-            //ObservableCollection<CartList> mycart = new ObservableCollection<CartList> { };
-            ObjectDataProvider menuProvider = this.Resources["Menu"] as ObjectDataProvider;
-            menuProvider = Resources["ShoppingCart"] as ObjectDataProvider;
-            CartList cartlist = menuProvider.Data as CartList;
-            ShoppingCart = cartlist;
+
+            //ObjectDataProvider menuProvider = this.Resources["Menu"] as ObjectDataProvider;
+            //menuProvider = Resources["ShoppingCart"] as ObjectDataProvider;
+            //CartList cartlist = menuProvider.Data as CartList;
+            //ShoppingCart = cartlist;
+            ShoppingCart = App.Current.Resources["CartListDataSource"] as CartList;
             ((INotifyPropertyChanged)ShoppingCart).PropertyChanged += new PropertyChangedEventHandler(ShoppingCartChanged);
 
         }

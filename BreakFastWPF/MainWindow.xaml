@@ -5,7 +5,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:BreakFastWPF"
         xmlns:common="clr-namespace:BreakFastWPF.Common"
-        Title="Material Design in XAML" Height="800" Width="1100"
+        Title="BreakFast 自助點餐系統" Height="800" Width="1100"
+        Icon="images/hamburger-16.ico"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -70,7 +71,7 @@
                                 <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
                             </StackPanel>
                         </materialDesign:PopupBox>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">Material Design In XAML Toolkit</TextBlock>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">BreakFast 自助點餐機</TextBlock>
                     </DockPanel>
                 </materialDesign:ColorZone>
                 <Grid>

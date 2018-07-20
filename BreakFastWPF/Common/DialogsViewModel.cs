@@ -51,13 +51,13 @@ namespace BreakFastWPF.Common
         private async void ExecuteRunCheckOutDialog(object o)
         {
             //let's set up a little MVVM, cos that's what the cool kids are doing:
-            this.ShoppingCart = (CartList)o;
-            var view = new CheckoutDialog((CartList)o)
+            //this.ShoppingCart = (CartList)o;
+            var view = new CheckoutDialog()
             {
                 DataContext = new AppDialogViewModel()
             };
             //view.ShoppingCart = shoppingCart;
-            view.showTotalPrice();
+            //view.showTotalPrice();
             //show the dialog
             var result = await DialogHost.Show(view, "RootDialog", ExtendedOpenedEventHandler, ExtendedClosingEventHandler);
 

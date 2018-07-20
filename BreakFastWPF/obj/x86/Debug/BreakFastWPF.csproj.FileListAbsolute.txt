@@ -41,7 +41,6 @@ C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\ShowMeTheXAML.dll
 C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\MaterialDesignThemes.Wpf.pdb
 C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\MaterialDesignThemes.Wpf.xml
 C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\Newtonsoft.Json.xml
-C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.csprojAssemblyReference.cache
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\AppMessageDialog.baml
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\AppProgressDialog.baml
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\AppMessageDialog.g.cs
@@ -58,6 +57,8 @@ C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\GeneratedInternalTypeHelper
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF_MarkupCompile.cache
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF_MarkupCompile.lref
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\App.baml
+C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\Common\CartListResourses.baml
+C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\Common\CommResourses.baml
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\Common\template_order.baml
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\DocumentationLinks.baml
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\CheckoutDialog.baml
@@ -75,4 +76,4 @@ C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.csproj.CoreCom
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.csproj.CopyComplete
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.exe
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.pdb
-C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\Common\CommResourses.baml
+C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.csprojAssemblyReference.cache

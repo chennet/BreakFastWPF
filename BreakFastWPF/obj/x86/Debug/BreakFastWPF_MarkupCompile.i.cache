@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\vs-sample\BreakFastWPF\BreakFastWPF\App.xaml
-13-520073679
+1452036084
 
 35788254321
 181944985470
-AppMessageDialog.xaml;AppProgressDialog.xaml;Common\CommResourses.xaml;Common\template_order.xaml;DocumentationLinks.xaml;CheckoutDialog.xaml;Order.xaml;Cards.xaml;Common\template.xaml;Common\styles.xaml;MainWindow.xaml;LoginDialog.xaml;SettingWindow.xaml;
+AppMessageDialog.xaml;AppProgressDialog.xaml;Common\CartListResourses.xaml;Common\CommResourses.xaml;Common\template_order.xaml;DocumentationLinks.xaml;CheckoutDialog.xaml;Order.xaml;Cards.xaml;Common\template.xaml;Common\styles.xaml;MainWindow.xaml;LoginDialog.xaml;SettingWindow.xaml;
 
 True
 
