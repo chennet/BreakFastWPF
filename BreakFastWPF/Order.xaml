@@ -39,7 +39,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="195" />
+            <ColumnDefinition Width="170" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
@@ -47,7 +47,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <!-- Shopping cart start -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" Width="190" PanningMode="VerticalOnly">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Width="165" PanningMode="VerticalOnly">
                 <Grid Margin="10">
                     <ItemsControl x:Name="wrapcartitem" ItemsSource="{Binding Source={StaticResource CartListDataSource}}">
                         <ItemsControl.ItemsPanel>
@@ -128,10 +128,12 @@
                                     <Image Source="{Binding ImageUri}" Height="140" Width="196" Stretch="UniformToFill" />
                                     <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                                             HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                            Margin="0 0 16 -20"
+                                            Width="70"
+                                            Height="70"
+                                            Margin="0 0 5 -22"
                                             Click="AddToShoppingCart"
                                             Tag="{Binding}">
-                                        <materialDesign:PackIcon Kind="CartPlus" />
+                                        <materialDesign:PackIcon Kind="CartPlus" Width="25" Height="25"/>
                                     </Button>
                                     <StackPanel Grid.Row="1" Margin="8 24 8 0" >
                                         <TextBlock FontWeight="Bold" FontSize="20" Text="{Binding Title}" />

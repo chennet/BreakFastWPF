@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\
+D:\VS-Sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\
 BreakFastWPF
 none
 false
 DEBUG;TRACE
-C:\vs-sample\BreakFastWPF\BreakFastWPF\App.xaml
+D:\VS-Sample\BreakFastWPF\BreakFastWPF\App.xaml
 1452036084
 
 31919681466
-181944985470
+18-10743647
 AppMessageDialog.xaml;AppProgressDialog.xaml;Common\CartListResourses.xaml;Common\CommResourses.xaml;Common\template_order.xaml;DocumentationLinks.xaml;CheckoutDialog.xaml;Order.xaml;Cards.xaml;Common\template.xaml;Common\styles.xaml;MainWindow.xaml;LoginDialog.xaml;SettingWindow.xaml;
 
 False
