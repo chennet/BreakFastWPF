@@ -27,6 +27,8 @@ namespace BreakFastWPF
     {
         private static BackgroundWorker backgroundWorker;
         int MAX_CHECK_TIME = 200;
+        int req_to_pay = 0;
+        int user_paid = 0;
         PSCommModel pscomm;
         CartList shoppingCart;
         ////public CartList shoppingCart;
@@ -49,7 +51,7 @@ namespace BreakFastWPF
             {
                 if (isPsTradable = CheckPSTradable())
                 {
-                    PSStatusTextBlock.Text = "PS3 Ready";
+                    PSStatusTextBlock.Text = "請投幣... ";
                     pstrad.reqTransactionAmount();
                     backgroundWorker = new BackgroundWorker
                     {
@@ -88,7 +90,7 @@ namespace BreakFastWPF
                 Thread.Sleep(100);
                 check_cnt = MAX_CHECK_TIME;
                 pGetData = pstrad.reqTransactionStatus();
-                while (!(pGetData[0] == 01) && check_cnt > 0) { check_cnt--; pGetData = pstrad.reqTransactionStatus(); Thread.Sleep(500); }
+                while (!(pGetData[0] == 02) && check_cnt > 0) { check_cnt--; pGetData = pstrad.reqTransactionStatus(); Thread.Sleep(500); }
                 if (pGetData[0] == 02) rtn = true;
             }
             return rtn;
@@ -96,15 +98,14 @@ namespace BreakFastWPF
 
         public void showListBox()
         {
-            int amount = 0;
             for (int x = 0; x < shoppingCart.Count; x++)
             {
-                amount += (int)shoppingCart[x].ItemType.Price;
+                req_to_pay += (int)shoppingCart[x].ItemType.Price;
                 //ShoppingCartListBox.Items.Add(shoppingCart[x].ItemType.Description);
             }
             string cmmstate = (pscomm.isCommInit) ? "Connected" : "Disconnected";
             ordercount.Text = "您共訂購 " + shoppingCart.Count.ToString() + " 項";
-            ordertotal.Text = amount.ToString();
+            ordertotal.Text = req_to_pay.ToString();
 
         }
         public void showTotalPrice()
@@ -112,7 +113,7 @@ namespace BreakFastWPF
             //totalprice.Text = shoppingCart.Count.ToString();
         }
 
-        static void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             /* BackgroundWorker Example
             for (int i = 0; i < 200; i++)
@@ -128,10 +129,88 @@ namespace BreakFastWPF
                 e.Result = 1000;
             }
             */
-            int[] amt = pstrad.reqTransactionAmount();
+            int rtn = 0;
+            int[] amt_paid= { 0 };
+            do
+            {
+                amt_paid = pstrad.reqTransactionAmount();
+                if(amt_paid!=null)
+                    user_paid = (amt_paid[0] + amt_paid[1] + amt_paid[2]);
+                Thread.Sleep(100);
+                if (backgroundWorker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+            while (user_paid < req_to_pay);
+            //customer paid enough cash. stop to eat coins.
+            rtn = pstrad.setChargeDeviceDisable();
+            Thread.Sleep(100);
+            //int check_cnt = MAX_CHECK_TIME;
+            int[] pGetData = pstrad.reqTransactionStatus();
+            PSStatusTextBlock.Text = "計算中... ";
+            while (!(pGetData[0] == 02))
+            {
+                pGetData = pstrad.reqTransactionStatus();
+                Thread.Sleep(100);
+                if (backgroundWorker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    return;
+                }
+            }
+            if (pGetData[0] == 02) PSStatusTextBlock.Text = "等待找零 " + (user_paid-req_to_pay).ToString();
+            if ((user_paid - req_to_pay) > 0)
+            {
+                //使用AutoCal_Payout_Amount先行試算以目前的庫存量夠不夠被找出，此時回傳ack或Nack代表夠或不夠
+                if (1 != pstrad.AutoCalPayoutAmount(2, (user_paid - req_to_pay), 0))
+                {
+                    int[] pData = pstrad.reqThePayoutAmountCalResult();
+                    while (1 == pData[0])
+                    {
+                        pData = pstrad.reqThePayoutAmountCalResult();
+                        Thread.Sleep(100);
+                        if (backgroundWorker.CancellationPending)
+                        {
+                            e.Cancel = true;
+                            return;
+                        }
+                    }
+                    if (2 == pData[0])
+                    {
+                        //足夠找零金額，開始找零
+                        PSStatusTextBlock.Text = "找零中... ";
+                        rtn = pstrad.AutoCalPayoutAmount(1, (user_paid - req_to_pay), 0);
+                        do
+                        {
+                            pData = pstrad.reqTransactionStatus();
+                            if (backgroundWorker.CancellationPending)
+                            {
+                                e.Cancel = true;
+                                return;
+                            }
+                        } while (pData[0] != 5);
+                        if (1 == pstrad.setTransactionFinish())
+                        {
+                            PSStatusTextBlock.Text = "交易完成.";
+                        }
+                    }
+                    else
+                    {
+                        PSStatusTextBlock.Text = "錯誤!不足找零";
+                    }
+                }
+            }
+            else
+            {
+                // 無須找零
+                if(1 == pstrad.setTransactionFinish())
+                {
+                    PSStatusTextBlock.Text = "交易完成.";
+                }
+            }
 
-            while(true)
-            { Thread.Sleep(100); }
         }
 
         static void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)

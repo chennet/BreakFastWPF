@@ -102,6 +102,10 @@ namespace BreakFastWPF.Common
             rtn = getBillFunc();
             if (rtn != PSCons.PS_SUCCESS) return rtn;
 
+            rtn = setCoinFunc();
+
+            if (rtn != PSCons.PS_SUCCESS) return rtn;
+
             return PSCons.PS_SUCCESS;
         }
 

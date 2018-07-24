@@ -37,30 +37,47 @@
             </Style>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="20" VerticalAlignment="Top" DataContext="{Binding Source={StaticResource PSCommDataSource}}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="155" />
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+    <Grid IsVisibleChanged="SettingWindow_IsVisibleChanged">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="10">Select COM port</TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
-            <ComboBox Name="ComPortBox" materialDesign:HintAssist.Hint="Port"  Margin="10"/>
-            <Button Name="OpenCloseButton" Grid.Row="2" Click="OpenCloseComPort" Margin="10">Connect</Button>
-        </StackPanel>
-        <TextBox Name="MsgBox" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" 
-                 TextWrapping="Wrap" VerticalAlignment="Top"
-                 MinWidth="100"
-                 materialDesign:HintAssist.Hint="Message..."
-                 Height="300"></TextBox>
+            <materialDesign:DialogHost Name="loginhost">
+                <materialDesign:DialogHost.DialogContent>
+                    <StackPanel Margin="16">
+                        <TextBlock>Password:</TextBlock>
+                        <PasswordBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="PassTextBox" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
+                            <Button Style="{StaticResource MaterialDesignFlatButton}"
+                                    Margin="0 8 8 0"
+                                    Click="LoginCheckButtonClick">
+                                LOGIN
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </materialDesign:DialogHost.DialogContent>
+                <Grid Margin="20" VerticalAlignment="Top" DataContext="{Binding Source={StaticResource PSCommDataSource}}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="10">Select COM port</TextBlock>
+                    <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
+                        <ComboBox Name="ComPortBox" materialDesign:HintAssist.Hint="Port"  Margin="10"/>
+                        <Button Name="OpenCloseButton" Grid.Row="2" Click="OpenCloseComPort" Margin="10">Connect</Button>
+                    </StackPanel>
+                    <TextBox Name="MsgBox" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
+                             TextWrapping="Wrap" VerticalAlignment="Top"
+                             MinWidth="200"
+                             materialDesign:HintAssist.Hint="Message..."
+                             Height="300"></TextBox>
 
+                </Grid>
+            </materialDesign:DialogHost>
     </Grid>
 </UserControl>

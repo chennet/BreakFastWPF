@@ -64,7 +64,7 @@ namespace BreakFastWPF.Common
             return result;
         }
 
-        public int getTransactionFinish()
+        public int setTransactionFinish()
         {
             /*
              * The command will be sent to ps3 after the deal is finish already
@@ -237,16 +237,15 @@ namespace BreakFastWPF.Common
             /*
              * It means the rest of credit be payout to customer or Checks the Inventory that is enough to payout or not.
                (a)Input:
-               1.nSetFunction: int
-               2.nPayoutAmount: int
-               3.nDecPoint: int
-                  nSetFunction
+               1. nSetFunction: int
                     1->Start Payout
                     2->Check the Inventory amount
+               2. nPayoutAmount: int
+               3. nDecPoint: int
                (b)Return: nSuccess : int
                (1->Success, other->ErrorCode)
                The setting function is 0x02, ps3 will calculate the inventory is enough to payout or not. 
-               Controller can order the command (11) to know the result. 
+               Controller can order the command Request_the_payout_amount_cal_Result to know the result. 
                If setting function is 0x01, it means start to payout the rest of credit.
              */
             return AutoCal_Payout_Amount(ns, np, nd);

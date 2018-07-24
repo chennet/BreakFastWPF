@@ -13,7 +13,7 @@
         TextOptions.TextFormattingMode="Ideal" 
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
-        FontFamily="{StaticResource MaterialDesignFont}" WindowState="Maximized">
+        FontFamily="{StaticResource MaterialDesignFont}" WindowState="Maximized" WindowStyle="None">
     <Window.CommandBindings>
         <CommandBinding Command="Copy" Executed="OnCopy"></CommandBinding>
     </Window.CommandBindings>
@@ -68,7 +68,7 @@
                                 <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Can't Touch This" IsEnabled="False" />
                                 <Separator/>
-                                <Button Content="Goodbye" Click="MenuPopupButton_OnClick"/>
+                                <Button Content="Goodbye?" Click="AppExitButton_OnClick"/>
                             </StackPanel>
                         </materialDesign:PopupBox>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">BreakF@st 自助點餐機</TextBlock>

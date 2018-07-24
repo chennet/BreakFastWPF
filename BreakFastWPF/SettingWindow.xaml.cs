@@ -27,6 +27,7 @@ namespace BreakFastWPF
     public partial class SettingWindow : UserControl
     {
         PSCommModel pscomm;
+        string passwrd = "1234567";
         [DllImport("msvcr120.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern int _fpreset();
         public SettingWindow()
@@ -93,5 +94,21 @@ namespace BreakFastWPF
         {
             MsgBox.Text += msg + "\n";
         }
+        private void SettingWindow_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue)
+            {
+                PassTextBox.Password = "";
+                loginhost.IsOpen = true;
+            }
+
+        }
+
+        private void LoginCheckButtonClick(object sender, RoutedEventArgs e)
+        {
+            if (PassTextBox.Password == passwrd)
+                loginhost.IsOpen = false;
+        }
     }
+
 }
