@@ -27,7 +27,7 @@ namespace BreakFastWPF
 
         private void AppExitCommand(object sender, RoutedEventArgs e)
         {
-            System.Windows.Application.Current.Shutdown();
+            App.Current.Shutdown();
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.ComponentModel;
 
 namespace BreakFastWPF
 {
@@ -74,6 +75,7 @@ namespace BreakFastWPF
             }
         }
 
+        /* method 1 - use dialog */
         private async void AppExitButton_OnClick(object sender, RoutedEventArgs e)
         {
             var appExitDialog = new AppExitDialog
@@ -82,6 +84,28 @@ namespace BreakFastWPF
             };
 
             await DialogHost.Show(appExitDialog, "RootDialog");
+            this.Close();
         }
+
+        /* method 2 - use message box::: NOT working???
+        private void AppExitButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        // Method to handle the Window.Closing event.
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            var response = MessageBox.Show("Do you really want to exit?", "Exiting...",
+                                           MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+            if (response == MessageBoxResult.No)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
+        }
+         */
     }
 }

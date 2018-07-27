@@ -58,10 +58,10 @@ namespace BreakFastWPF.Common
 
         public int[] convertIntPtr(IntPtr ptr)
         {
-            int arrayLength = Marshal.ReadInt32(ptr);
-            int[] result = new int[arrayLength];
-            Marshal.Copy(ptr, result, 0, arrayLength);
-            return result;
+            int[] rtn = (ptr != IntPtr.Zero)?new int[Marshal.ReadInt32(ptr)] :null;
+            if(ptr != IntPtr.Zero)
+                Marshal.Copy(ptr, rtn, 0, rtn.Length);
+            return rtn;
         }
 
         public int setTransactionFinish()

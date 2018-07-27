@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
+using System.Threading;
 
 namespace BreakFastWPF.Common
 {
@@ -69,10 +70,11 @@ namespace BreakFastWPF.Common
 
         public int[] convertIntPtr(IntPtr ptr)
         {
-            int arrayLength = Marshal.ReadInt32(ptr);
-            int[] result = new int[arrayLength];
-            Marshal.Copy(ptr, result, 0, arrayLength);
-            return result;
+            //IntPtr != IntPtr.Zero
+            int arrayLength = arrayLength = Marshal.ReadInt32(ptr);
+            int[] rtn = new int[arrayLength];
+            Marshal.Copy(ptr, rtn, 0, arrayLength);
+            return rtn;
         }
 
         public bool PSOpenPort(string ComNo, string bRate = "9600,E,8,1")
@@ -169,11 +171,18 @@ namespace BreakFastWPF.Common
         private int getBillFunc()
         {
             IntPtr ptr = Get_ScFa_DePl();
-            int[] pBASfDp = convertIntPtr(ptr);
-            if (pBASfDp[0] != PSCons.pBASfDp_100 && pBASfDp[1] != 0) return (int)PSFunc.Get_ScFa_DePl;
-            ptr = Request_The_Value_of_Bill_Validator();
-            int[] pBAValue = convertIntPtr(ptr);
-            return PSCons.PS_SUCCESS;
+            int rtn = PSCons.PS_SUCCESS;
+            if (ptr != IntPtr.Zero)
+            {
+                int[] pBASfDp = convertIntPtr(ptr);
+                if (pBASfDp[0] != PSCons.pBASfDp_100 && pBASfDp[1] != 0) rtn = (int)PSFunc.Get_ScFa_DePl;
+            }
+            if (ptr != IntPtr.Zero)
+            {
+                ptr = Request_The_Value_of_Bill_Validator();
+                int[] pBAValue = convertIntPtr(ptr);
+            }
+            return rtn;
         }
 
         private int setCoinFunc()

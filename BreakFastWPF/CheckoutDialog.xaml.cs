@@ -131,10 +131,11 @@ namespace BreakFastWPF
             */
             int rtn = 0;
             int[] amt_paid= { 0 };
+            PSStatusTextBlock.Text = "請投幣... ";
             do
             {
                 amt_paid = pstrad.reqTransactionAmount();
-                if(amt_paid!=null)
+                if(amt_paid != null && amt_paid.Length > 2)
                     user_paid = (amt_paid[0] + amt_paid[1] + amt_paid[2]);
                 Thread.Sleep(100);
                 if (backgroundWorker.CancellationPending)
@@ -149,9 +150,13 @@ namespace BreakFastWPF
             Thread.Sleep(100);
             //int check_cnt = MAX_CHECK_TIME;
             int[] pGetData = pstrad.reqTransactionStatus();
-            PSStatusTextBlock.Text = "計算中... ";
-            while (!(pGetData[0] == 02))
+            PSStatusTextBlock.Text = "投幣完成...";
+            int chk_count = MAX_CHECK_TIME;
+            do
             {
+                if (pGetData == null) continue;
+                if (pGetData[0] == 02) break;
+                chk_count--;
                 pGetData = pstrad.reqTransactionStatus();
                 Thread.Sleep(100);
                 if (backgroundWorker.CancellationPending)
@@ -159,57 +164,68 @@ namespace BreakFastWPF
                     e.Cancel = true;
                     return;
                 }
-            }
-            if (pGetData[0] == 02) PSStatusTextBlock.Text = "等待找零 " + (user_paid-req_to_pay).ToString();
-            if ((user_paid - req_to_pay) > 0)
+            } while (chk_count > 0);
+            if (pGetData != null && pGetData[0] == 02)
             {
-                //使用AutoCal_Payout_Amount先行試算以目前的庫存量夠不夠被找出，此時回傳ack或Nack代表夠或不夠
-                if (1 != pstrad.AutoCalPayoutAmount(2, (user_paid - req_to_pay), 0))
+                if (pGetData[0] == 02) PSStatusTextBlock.Text = "找零計算... " + (user_paid - req_to_pay).ToString();
+                if ((user_paid - req_to_pay) > 0)
                 {
-                    int[] pData = pstrad.reqThePayoutAmountCalResult();
-                    while (1 == pData[0])
+                    //使用AutoCal_Payout_Amount先行試算以目前的庫存量夠不夠被找出，此時回傳ack或Nack代表夠或不夠
+                    if (1 != pstrad.AutoCalPayoutAmount(2, (user_paid - req_to_pay), 0))
                     {
-                        pData = pstrad.reqThePayoutAmountCalResult();
-                        Thread.Sleep(100);
-                        if (backgroundWorker.CancellationPending)
-                        {
-                            e.Cancel = true;
-                            return;
-                        }
-                    }
-                    if (2 == pData[0])
-                    {
-                        //足夠找零金額，開始找零
-                        PSStatusTextBlock.Text = "找零中... ";
-                        rtn = pstrad.AutoCalPayoutAmount(1, (user_paid - req_to_pay), 0);
+                        chk_count = MAX_CHECK_TIME;
+                        int[] pData = pstrad.reqThePayoutAmountCalResult();
                         do
                         {
-                            pData = pstrad.reqTransactionStatus();
+                            if (pData == null) continue;
+                            if (pData[0] != 1) break;
+                            Thread.Sleep(100);
+                            pData = pstrad.reqThePayoutAmountCalResult();
                             if (backgroundWorker.CancellationPending)
                             {
                                 e.Cancel = true;
                                 return;
                             }
-                        } while (pData[0] != 5);
-                        if (1 == pstrad.setTransactionFinish())
+                        } while (true);
+                       
+                        if ( pData != null && 2 == pData[0])
                         {
-                            PSStatusTextBlock.Text = "交易完成.";
+                            //足夠找零金額，開始找零
+                            PSStatusTextBlock.Text = "找零中... ";
+                            rtn = pstrad.AutoCalPayoutAmount(1, (user_paid - req_to_pay), 0);
+                            do
+                            {
+                                pData = pstrad.reqTransactionStatus();
+                                if (pData == null) continue;
+                                if (pData[0] == 5) break;
+                                if (backgroundWorker.CancellationPending)
+                                {
+                                    e.Cancel = true;
+                                    return;
+                                }
+                            } while (true);
+
+                            if (1 == pstrad.setTransactionFinish())
+                            {
+                                PSStatusTextBlock.Text = "交易完成.";
+                            }
+                        }
+                        else
+                        {
+                            PSStatusTextBlock.Text = "錯誤或不足找零";
                         }
                     }
-                    else
+                }
+                else
+                {
+                    // 無須找零
+                    if (1 == pstrad.setTransactionFinish())
                     {
-                        PSStatusTextBlock.Text = "錯誤!不足找零";
+                        PSStatusTextBlock.Text = "交易完成.";
                     }
                 }
             }
-            else
-            {
-                // 無須找零
-                if(1 == pstrad.setTransactionFinish())
-                {
-                    PSStatusTextBlock.Text = "交易完成.";
-                }
-            }
+            else PSStatusTextBlock.Text = "投幣機錯誤!";
 
         }
 

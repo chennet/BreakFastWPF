@@ -89,6 +89,15 @@ C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.csproj.CoreCom
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.csproj.CopyComplete
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.exe
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.pdb
-C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.csprojAssemblyReference.cache
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\AppExitDialog.baml
 C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\AppExitDialog.g.cs
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\EntityFramework.dll
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\EntityFramework.SqlServer.dll
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\System.Data.SQLite.dll
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\System.Data.SQLite.EF6.dll
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\System.Data.SQLite.Linq.dll
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\EntityFramework.xml
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\EntityFramework.SqlServer.xml
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\System.Data.SQLite.xml
+C:\vs-sample\BreakFastWPF\BreakFastWPF\bin\x86\Debug\System.Data.SQLite.dll.config
+C:\vs-sample\BreakFastWPF\BreakFastWPF\obj\x86\Debug\BreakFastWPF.csprojAssemblyReference.cache

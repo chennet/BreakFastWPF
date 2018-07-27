@@ -27,7 +27,7 @@ namespace BreakFastWPF
         //private ObservableCollection<Book> ObsBooks;
         //public CartList ShoppingCart;
         CartList ShoppingCart;
-
+        SQLiteHelper sh = new SQLiteHelper();
         public Order()
         {
             InitializeComponent();

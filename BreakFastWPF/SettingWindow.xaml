@@ -45,7 +45,7 @@
                 <materialDesign:DialogHost.DialogContent>
                     <StackPanel Margin="16">
                         <TextBlock>Password:</TextBlock>
-                        <PasswordBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="PassTextBox" />
+                        <PasswordBox Margin="0 8 0 0" HorizontalAlignment="Stretch" x:Name="PassTextBox" Password="1234567" />
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" >
                             <Button Style="{StaticResource MaterialDesignFlatButton}"
                                     Margin="0 8 8 0"

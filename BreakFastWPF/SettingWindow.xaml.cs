@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,19 +66,7 @@ namespace BreakFastWPF
                 {
                     Display_MsgBox("Open port [" + nCom + "] - connected.");
                     Display_MsgBox("PS machine initializing...");
-                    int rtn_code = pscomm.initPS3();
-                    if (rtn_code == PSCommModel.PSCons.PS_SUCCESS)
-                    {
-                        pscomm.isCommInit = true;
-                        Display_MsgBox("PS machine initialized.");
-                        OpenCloseButton.Content = "Disconnect";
-                    }
-                    else
-                    {
-                        Display_MsgBox("PS machine initial failed.");
-                        pscomm.PSClosePort();
-                        Display_MsgBox("Connection closed.");
-                    }
+                    Ps3Initial();
                 }
                 else { Display_MsgBox("Port [" + nCom + "] - open failed."); }
             }
@@ -90,6 +79,24 @@ namespace BreakFastWPF
             _fpreset();
         }
 
+        private void Ps3Initial()
+        {
+            int rtn_code = pscomm.initPS3();
+            if (rtn_code == PSCommModel.PSCons.PS_SUCCESS)
+            {
+                pscomm.isCommInit = true;
+                Display_MsgBox("PS machine initialized.");
+                OpenCloseButton.Content = "Disconnect";
+            }
+            else
+            {
+                Display_MsgBox("PS machine initial failed.(" + pscomm.PSFuncStr(rtn_code) + ")");
+                pscomm.PSClosePort();
+                Display_MsgBox("Connection closed.");
+            }
+
+        }
+
         private void Display_MsgBox(string msg)
         {
             MsgBox.Text += msg + "\n";
@@ -98,7 +105,7 @@ namespace BreakFastWPF
         {
             if ((bool)e.NewValue)
             {
-                PassTextBox.Password = "";
+                //PassTextBox.Password = "";
                 loginhost.IsOpen = true;
             }
 
