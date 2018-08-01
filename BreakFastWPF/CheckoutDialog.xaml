@@ -44,10 +44,9 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Name="ordercount" Margin="10" Width="100" FontSize="16"/>
-            <TextBlock Grid.Column="2" Name="PSStatusTextBlock" Margin="10" FontSize="16" HorizontalAlignment="Right" Width="100" Foreground="Red" />
+            <TextBlock Grid.Column="1" Name="PSStatusTextBlock" Margin="10 10 5 10" FontSize="16" HorizontalAlignment="Right" TextAlignment="Right" Foreground="Red" />
         </Grid>
         <StackPanel Grid.Row="1">
             <!--
@@ -92,7 +91,7 @@
                 ACCEPT
             </Button>
             -->
-            <Button IsCancel="True" Margin="8 0 0 0" Click="TradCancelButton"
+            <Button IsCancel="True" Margin="8 0 0 0" Click="TradCancelButton" Name="CancelTradButton"
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>
