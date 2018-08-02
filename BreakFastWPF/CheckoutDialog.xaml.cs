@@ -178,7 +178,7 @@ namespace BreakFastWPF
                         return;
                     }
                 } while (wait_cnt > 0);
-                if (pGetData != null && pGetData[0] == 02)
+                if (pGetData != null && pGetData[0] == 03)
                 {
                     if (pGetData[0] == 02)
                     {
@@ -307,6 +307,8 @@ namespace BreakFastWPF
             if (isPsTradable)
             {
                 backgroundWorker.CancelAsync();
+                pstrad.setChargeDeviceDisable();
+                Thread.Sleep(100);
                 pstrad.setTransactionFinish();
             }
             shoppingCart.Clear();

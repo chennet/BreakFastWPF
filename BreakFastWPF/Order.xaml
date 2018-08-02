@@ -140,6 +140,7 @@
                                         <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="{Binding Desp}" Width="200" Margin="0 8 0 0"/>
                                     </StackPanel>
                                     <StackPanel HorizontalAlignment="Right" Grid.Row="2" Orientation="Horizontal" Margin="8">
+                                        <TextBlock Text="{Binding Price}" Margin="0 0 10 0" FontFamily="Georgia" FontSize="26" />
                                         <Button Style="{StaticResource MaterialDesignToolButton}"
                                                 Width="30" Padding="2 0 2 0"
                                                 materialDesign:RippleAssist.IsCentered="True">
