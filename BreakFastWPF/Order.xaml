@@ -100,7 +100,7 @@
                     <!--
                     <Button Margin="5" Grid.Row="2" Name="CheckOutButton" Tag="{Binding Source={StaticResource CartListDataSource}}" Command="{Binding RunCheckOutCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" IsEnabled="False">結 帳</Button>
                     -->
-                    <Button Margin="5" Grid.Row="2" Name="CheckOutButton" Command="{Binding RunCheckOutCommand}" IsEnabled="False">結 帳</Button>
+                    <Button Height="80" Margin="5" Grid.Row="2" Name="CheckOutButton" Command="{Binding RunCheckOutCommand}" IsEnabled="False">結 帳</Button>
                 </Grid>
             </StackPanel>
             <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" Grid.Row="1" />
