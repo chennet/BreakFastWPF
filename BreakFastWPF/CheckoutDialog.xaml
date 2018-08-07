@@ -25,7 +25,7 @@
             <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource MaterialDesignTextBox}">
                 <Setter Property="Margin" Value="0 8 0 8" />
                 <Setter Property="TextAlignment" Value="Right" />
-                <Setter Property="Foreground" Value="Brown" />
+                <Setter Property="Foreground" Value="Red" />
                 <Setter Property="Width" Value="150" />
                 <Setter Property="FontSize" Value="45" />
                 <Setter Property="IsEnabled" Value="False" />
@@ -80,6 +80,7 @@
         </Grid>
         <StackPanel Grid.Row="3"
                     Margin="0 16 30 0"
+                    Height="38"
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right">
             <!--
@@ -91,7 +92,7 @@
                 ACCEPT
             </Button>
             -->
-            <Button IsCancel="True" Margin="8 0 0 0" Click="TradCancelButton" Name="CancelTradButton"
+            <Button IsCancel="True" Height="36" FontSize="18" Margin="8 0 0 0" Click="TradCancelButton" Name="CancelTradButton"
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>

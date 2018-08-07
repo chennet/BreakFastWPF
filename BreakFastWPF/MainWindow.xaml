@@ -50,7 +50,7 @@
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="common:AppItems">
-                                <TextBlock Text="{Binding Name}" Margin="32 0 32 0" />
+                                <TextBlock Text="{Binding Name}" Height="26" FontSize="20" Margin="32 5 32 5" />
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>

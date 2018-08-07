@@ -54,7 +54,7 @@ namespace BreakFastWPF
                 total += ShoppingCart[x].ItemType.Price;
             }
             selcount.Text = ShoppingCart.Count.ToString();
-            total_cost.Text = total.ToString();
+            total_cost.Text = total.ToString() + ".-";
             if (ShoppingCart.Count == 0)
                 CheckOutButton.IsEnabled = false;
             else CheckOutButton.IsEnabled = true;

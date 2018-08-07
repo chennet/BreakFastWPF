@@ -93,14 +93,14 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Name="selcount" FontSize="16" VerticalAlignment="Center" Text="0"/>
-                        <TextBlock Margin="5" Text=" 項合計金額:" />
+                        <TextBlock Name="selcount" FontSize="18" VerticalAlignment="Center" Text="0"/>
+                        <TextBlock Margin="5" FontSize="18" Text=" 項合計金額:" />
                     </StackPanel>
-                    <TextBlock Margin="10" Grid.Row="1" Name="total_cost" FontSize="24" Foreground="Yellow" HorizontalAlignment="Right">0</TextBlock>
+                    <TextBlock Margin="10" Grid.Row="1" Name="total_cost" FontSize="24" Foreground="Yellow" HorizontalAlignment="Right">0.-</TextBlock>
                     <!--
                     <Button Margin="5" Grid.Row="2" Name="CheckOutButton" Tag="{Binding Source={StaticResource CartListDataSource}}" Command="{Binding RunCheckOutCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" IsEnabled="False">結 帳</Button>
                     -->
-                    <Button Height="80" Margin="5" Grid.Row="2" Name="CheckOutButton" Command="{Binding RunCheckOutCommand}" IsEnabled="False">結 帳</Button>
+                    <Button Height="80" Margin="5" Grid.Row="2" Name="CheckOutButton" Command="{Binding RunCheckOutCommand}" IsEnabled="False" FontSize="24">結 帳</Button>
                 </Grid>
             </StackPanel>
             <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" Grid.Row="1" />
@@ -128,10 +128,11 @@
                                     <Image Source="{Binding ImageUri}" Height="140" Width="196" Stretch="UniformToFill" />
                                     <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                                             HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                            Width="65"
-                                            Height="65"
-                                            Margin="0 0 5 -22"
+                                            Width="80"
+                                            Height="80"
+                                            Margin="0 0 3 -26"
                                             Click="AddToShoppingCart"
+                                            Opacity="0.8"
                                             Tag="{Binding}">
                                         <materialDesign:PackIcon Kind="CartPlus" Width="20" Height="20"/>
                                     </Button>

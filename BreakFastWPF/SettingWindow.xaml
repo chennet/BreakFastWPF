@@ -68,8 +68,8 @@
                     </Grid.RowDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource MaterialDesignHeadlineTextBlock}" Margin="10">Select COM port</TextBlock>
                     <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="10">
-                        <ComboBox Name="ComPortBox" materialDesign:HintAssist.Hint="Port"  Margin="10"/>
-                        <Button Name="OpenCloseButton" Grid.Row="2" Click="OpenCloseComPort" Margin="10">Connect</Button>
+                        <ComboBox Name="ComPortBox" MaxDropDownHeight="60" FontSize="20" materialDesign:HintAssist.Hint="Port" Margin="10"/>
+                        <Button Name="OpenCloseButton" Height="80" FontSize="26" Grid.Row="2" Click="OpenCloseComPort" Margin="10">Connect</Button>
                     </StackPanel>
                     <TextBox Name="MsgBox" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2"
                              TextWrapping="Wrap" VerticalAlignment="Top"
