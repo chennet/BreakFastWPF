@@ -15,41 +15,31 @@ namespace BreakFastWPF.Models
 {
 
 
-    public class Menu
+    class Menu
     {
-        public string MenuType { get; set; }
-        public string Style { get; set; }
         public string MenuId { get; set; }
+        public string MenuType { get; set; }    //Solid or liquid?
+        public string Style { get; set; }       //Chinese, Japaness, or America style?
         public string Title { get; set; }
         public int Price { get; set; }
         public int Discount { get; set; }
-        private string imgdir = "";
-        private string newpath = "";
-        public string ImageUri
-        {
-            get
-            {
-                    return @newpath;
-            }
-            set
-            {
-                newpath = imgdir + value;
-            }
-        }
+        public string ImageUri{ get; set; }
         public string Desp { get; set; }
     }
 
-    public class ObsMenu : ObservableCollection<Menu>
+    class ObsMenu : ObservableCollection<Menu>
     {
         List<Menu> menulist;
         public ObsMenu()
         {
+            string imgPath = "pack://siteoforigin:,,,./images/";
+
             LoadMenu();
             foreach(var item in menulist)
             {
                 Console.WriteLine(item.MenuId);
                 Add(new Menu() { MenuType=item.MenuType, Style=item.Style, MenuId = item.MenuId, Title = item.Title,
-                    Price =item.Price, Discount=item.Discount, ImageUri =item.ImageUri, Desp=item.Desp });
+                    Price =item.Price, Discount=item.Discount, ImageUri = imgPath + item.ImageUri, Desp=item.Desp });
             }
         }
         public void MyCommand()

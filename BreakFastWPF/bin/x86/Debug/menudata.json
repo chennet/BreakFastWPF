@@ -6,7 +6,7 @@
     "Title": "法式火腿豬排三明治",
     "Price": 25,
     "Discount": 5,
-    "ImageUri": "Assets/bk209-020.jpg",
+    "ImageUri": "bk209-020.jpg",
     "Desp": "吐司、廣東A生菜、火腿 、片里肌肉片 、洋蔥絲"
   },
   {
@@ -16,7 +16,7 @@
     "Title": "總匯三明治",
     "Price": 28,
     "Discount": 5,
-    "ImageUri": "/BreakFastWPF;component/images/yqn54-014.jpg",
+    "ImageUri": "yqn54-014.jpg",
     "Desp": "土司，將小黃瓜絲、蕃茄片放上，疊上另一層作法4的土司，再放上火腿及蛋"
   },
   {
@@ -26,7 +26,7 @@
     "Title": "豉油皇牛柳米漢堡",
     "Price": 30,
     "Discount": 5,
-    "ImageUri": "/BreakFastWPF;component/images/130d5d1a248000004316.jpg",
+    "ImageUri": "130d5d1a248000004316.jpg",
     "Desp": "喜生米漢堡堅持選用台灣道地好米、手工挑掉九層塔梗，到餡料絕不過夜，精選大安溪無污染的台灣米為原料，在歷經一年的層層試驗後，達到米板..."
   },
   {
@@ -36,7 +36,7 @@
     "Title": "豬排漢堡",
     "Price": 35,
     "Discount": 5,
-    "ImageUri": "/BreakFastWPF;component/images/whk063-104b.jpg",
+    "ImageUri": "whk063-104b.jpg",
     "Desp": "大里肌肉、漢堡麵包抹上美乃滋，放入美生菜、豬排、蕃茄、小黃瓜和苜蓿芽"
   },
   {
@@ -46,7 +46,7 @@
     "Title": "素肉鬆蛋餅捲",
     "Price": 25,
     "Discount": 0,
-    "ImageUri": "/BreakFastWPF;component/images/whk066-085b.jpg",
+    "ImageUri": "whk066-085b.jpg",
     "Desp": "雞蛋、蔥花、蛋餅皮、素肉鬆"
   },
   {
@@ -56,7 +56,7 @@
     "Title": "火腿蛋餅",
     "Price": 20,
     "Discount": 0,
-    "ImageUri": "/BreakFastWPF;component/images/whk066-083.jpg",
+    "ImageUri": "whk066-083.jpg",
     "Desp": "雞蛋、蔥花、蛋餅皮、火腿片"
   },
   {
@@ -66,7 +66,7 @@
     "Title": "饅頭肉鬆夾蛋",
     "Price": 30,
     "Discount": 0,
-    "ImageUri": "/BreakFastWPF;component/images/whk066-086.jpg",
+    "ImageUri": "whk066-086.jpg",
     "Desp": "雞蛋、蔥花、饅頭、肉鬆"
   }
 ]
