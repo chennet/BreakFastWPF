@@ -1,0 +1,1 @@
+https://www.onceinawhitemoon.net/2017/05/wpf-entityframeworkcore-and-sqlite/
