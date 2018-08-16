@@ -19,6 +19,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using BreakFastWPF.Common;
+using Database;
+
 
 namespace BreakFastWPF
 {
@@ -51,6 +53,12 @@ namespace BreakFastWPF
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            //using (DatabaseContext dbContext = new DatabaseContext())
+            //{
+            //    dbContext.Persons.Add(new Person { Name = "Patrick_Shih" });
+            //    dbContext.SaveChanges();
+            //
+            //}
         }
 
         private void OpenCloseComPort(object sender, RoutedEventArgs e)

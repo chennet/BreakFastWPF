@@ -10,6 +10,8 @@
 //using BreakFastWPF.Models;
 using ShowMeTheXAML;
 using System.Windows;
+using Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace BreakFastWPF
 {
@@ -18,6 +20,16 @@ namespace BreakFastWPF
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            InitializeComponent();
+
+            using (DatabaseContext dbContext = new DatabaseContext())
+            {
+                dbContext.Database.Migrate();
+            }
+        }
+
         //void AppStartup(object sender, StartupEventArgs args)
         //{
         //    /*
