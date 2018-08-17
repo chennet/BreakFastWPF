@@ -79,8 +79,8 @@
             <TextBox Grid.Row="3" Name="orderpaid">0</TextBox>
         </Grid>
         <StackPanel Grid.Row="3"
-                    Margin="0 16 30 0"
-                    Height="38"
+                    Margin="0 12 30 0"
+                    Height="45"
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right">
             <!--
@@ -92,7 +92,7 @@
                 ACCEPT
             </Button>
             -->
-            <Button IsCancel="True" Height="36" FontSize="18" Margin="8 0 0 0" Click="TradCancelButton" Name="CancelTradButton"
+            <Button IsCancel="True" Height="45" FontSize="22" Margin="8 0 0 0" Click="TradCancelButton" Name="CancelTradButton"
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>

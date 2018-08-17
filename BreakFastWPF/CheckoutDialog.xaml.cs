@@ -36,6 +36,7 @@ namespace BreakFastWPF
         int wait_cnt = 0;
         string ps_msg = "";
         bool cancel_trad = false;
+        bool complete_trad = false;
         ////public CartList shoppingCart;
         //public CartList ShoppingCart { set { shoppingCart = value; Resources["ShoppingCart"] = value; } }
         /*
@@ -213,6 +214,8 @@ namespace BreakFastWPF
                                     ps_msg = "找零中... ";
                                     backgroundWorker.ReportProgress(0);
                                     rtn = pstrad.AutoCalPayoutAmount(1, (user_paid - req_to_pay), 0);
+                                    complete_trad = true;
+                                    DoShipment();
                                     do
                                     {
                                         pData = pstrad.reqTransactionStatus();
@@ -247,6 +250,8 @@ namespace BreakFastWPF
                     else
                     {
                         // 無須找零
+                        complete_trad = true;
+                        DoShipment();
                         if (1 == pstrad.setTransactionFinish())
                         {
                             ps_msg = "交易完成.";
@@ -258,17 +263,18 @@ namespace BreakFastWPF
                 {
                     ps_msg = "投幣機錯誤!";
                     backgroundWorker.ReportProgress(0);
+                    if (user_paid > 0)
+                        pstrad.AutoCalPayoutAmount(1, (user_paid), 0);
                 }
             }
             else
             {
                 //MAX_WAIT_TIME for paid timeout
-               ps_msg = "交易取消";
+                ps_msg = "交易取消";
                 cancel_trad = true;
-               backgroundWorker.ReportProgress(0);
-            }
-            {
-
+                backgroundWorker.ReportProgress(0);
+                if(user_paid > 0)
+                    pstrad.AutoCalPayoutAmount(1, (user_paid), 0);
             }
 
         }
@@ -302,12 +308,25 @@ namespace BreakFastWPF
             }
         }
 
+        void DoShipment()
+        {
+            if(complete_trad)
+            {
+                //Start shipment process here
+            }
+        }
+
         private void TradCancelButton(object sender, RoutedEventArgs e)
         {
             if (isPsTradable)
             {
                 backgroundWorker.CancelAsync();
                 pstrad.setChargeDeviceDisable();
+                if (user_paid > 0)
+                {
+                    PSStatusTextBlock.Text = "退幣中... ";
+                    pstrad.AutoCalPayoutAmount(1, (user_paid), 0);
+                }
                 Thread.Sleep(100);
                 pstrad.setTransactionFinish();
             }
