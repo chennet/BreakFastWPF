@@ -29,31 +29,67 @@ namespace BreakFastWPF.Models
 
     class ObsMenu : ObservableCollection<Menu>
     {
-        List<Menu> menulist;
         public ObsMenu()
         {
-            string imgPath = "pack://siteoforigin:,,,./images/";
+            /* Here has two methods to load menu, JSON file and databse */
+            /* Load menu from JSON file */
+            //List<Menu> menulist;
+            //string imgPath = "pack://siteoforigin:,,,./images/";
+            //using (StreamReader r = File.OpenText("menudata.json"))
+            //{
+            //    string json = r.ReadToEnd();
+            //    menulist = JsonConvert.DeserializeObject<List<Menu>>(json);
+            //}
+            //foreach(var item in menulist)
+            //{
+            //    Console.WriteLine(item.MenuId);
+            //    Add(new Menu() { MenuType=item.MenuType, Style=item.Style, MenuId = item.MenuId, Title = item.Title,
+            //        Price =item.Price, Discount=item.Discount, ImageUri = imgPath + item.ImageUri, Desp=item.Desp });
+            //}
 
-            LoadMenu();
-            foreach(var item in menulist)
+            /* Load menu from SQLite DB */
+            using (DatabaseContext dbContext = new DatabaseContext())
             {
-                Console.WriteLine(item.MenuId);
-                Add(new Menu() { MenuType=item.MenuType, Style=item.Style, MenuId = item.MenuId, Title = item.Title,
-                    Price =item.Price, Discount=item.Discount, ImageUri = imgPath + item.ImageUri, Desp=item.Desp });
+                var query = from it in dbContext.BFMenus
+                            orderby it.MenuId
+                            select it;
+                foreach (BFMenu item in query)
+                    //Console.WriteLine("{0} | {1} | {2}", item.MenuId, item.Title, item.Price);
+                    Add(new Menu()
+                    {
+                        MenuType = item.MenuType,
+                        Style = item.Style,
+                        MenuId = item.MenuId,
+                        Title = item.Title,
+                        Price = item.Price,
+                        Discount = item.Discount,
+                        ImageUri = item.ImageUri,
+                        Desp = item.Desp
+                    });
+
+                //List<BFMenu> mlist = dbContext.BFMenus
+                //    .OrderBy(m => m.MenuId)
+                //    .ToList();
+                //foreach (var item in mlist)
+                //{
+                //    Add(new Menu()
+                //    {
+                //        MenuType = item.MenuType,
+                //        Style = item.Style,
+                //        MenuId = item.MenuId,
+                //        Title = item.Title,
+                //        Price = item.Price,
+                //        Discount = item.Discount,
+                //        ImageUri = item.ImageUri,
+                //        Desp = item.Desp
+                //    });
+                //}
             }
+
         }
         public void MyCommand()
         {
             Console.WriteLine("Here!!!");
-        }
-
-        public void LoadMenu()
-        {
-            using (StreamReader r = File.OpenText("menudata.json"))
-            {
-                string json = r.ReadToEnd();
-                menulist = JsonConvert.DeserializeObject<List<Menu>>(json);
-            }
         }
 
     }
