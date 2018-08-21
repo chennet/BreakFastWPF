@@ -56,7 +56,6 @@ C:\vs-sample\BreakFastWPF\Database\bin\Debug\System.Diagnostics.DiagnosticSource
 C:\vs-sample\BreakFastWPF\Database\bin\Debug\System.Interactive.Async.xml
 C:\vs-sample\BreakFastWPF\Database\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\vs-sample\BreakFastWPF\Database\bin\Debug\System.Text.Encodings.Web.xml
-C:\vs-sample\BreakFastWPF\Database\obj\Debug\Database.csprojAssemblyReference.cache
 C:\vs-sample\BreakFastWPF\Database\obj\Debug\Database.csproj.CoreCompileInputs.cache
 C:\vs-sample\BreakFastWPF\Database\obj\Debug\Database.csproj.CopyComplete
 C:\vs-sample\BreakFastWPF\Database\obj\Debug\Database.dll

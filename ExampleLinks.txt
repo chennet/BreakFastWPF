@@ -2,3 +2,6 @@ https://www.onceinawhitemoon.net/2017/05/wpf-entityframeworkcore-and-sqlite/
 ** Add Microsoft.EntityFrameworkCore.Sqlite to “Database” project <--1.1.2
 ** Add Microsoft.EntityFrameworkCore.Tools to “Database” project <--1.1.1
 ** Add Microsoft.EntityFrameworkCore.Design to your main WPF project <--1.1.2
+
+**Wpf-windows-on-two-screens
+https://www.codeproject.com/Articles/1165544/Wpf-windows-on-two-screens

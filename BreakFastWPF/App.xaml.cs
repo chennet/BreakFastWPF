@@ -10,6 +10,8 @@
 //using BreakFastWPF.Models;
 using ShowMeTheXAML;
 using System.Windows;
+using System.Windows.Forms;
+using System.Windows.Media;
 using Database;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +20,7 @@ namespace BreakFastWPF
     /// <summary>
     /// App.xaml 的互動邏輯
     /// </summary>
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         public App()
         {
@@ -27,6 +29,20 @@ namespace BreakFastWPF
             using (DatabaseContext dbContext = new DatabaseContext())
             {
                 dbContext.Database.Migrate();
+            }
+            //If multi screens available, show SuperWindow to screen #2
+            if (Screen.AllScreens.Length > 1)
+            {
+                SuperWindow swin = new SuperWindow();
+                Screen s1 = Screen.AllScreens[2];
+                System.Drawing.Rectangle r1 = s1.WorkingArea;
+                swin.WindowState = System.Windows.WindowState.Normal;
+                swin.WindowStartupLocation = System.Windows.WindowStartupLocation.Manual;
+                swin.Top = r1.Top;
+                swin.Left = r1.Left;
+
+                swin.Show();
+                swin.WindowState = System.Windows.WindowState.Maximized;
             }
         }
 
