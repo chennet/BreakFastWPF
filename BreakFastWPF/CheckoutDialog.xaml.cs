@@ -32,6 +32,7 @@ namespace BreakFastWPF
         int user_paid = 0;
         PSCommModel pscomm;
         CartList shoppingCart;
+        CartList shippingCart;
         int[] amt_paid = { 0 };
         int wait_cnt = 0;
         string ps_msg = "";
@@ -50,6 +51,7 @@ namespace BreakFastWPF
         {
             pscomm = App.Current.Resources["PSCommDataSource"] as PSCommModel;
             shoppingCart = App.Current.Resources["CartListDataSource"] as CartList;
+            shippingCart = App.Current.Resources["ShipListDataSource"] as CartList;
             //ShoppingCart = _shoppingCart;
             InitializeComponent();
             showListBox();
@@ -313,6 +315,10 @@ namespace BreakFastWPF
             if(complete_trad)
             {
                 //Start shipment process here
+                for (int x = 0; x < shoppingCart.Count; x++)
+                {
+                    shippingCart.Add(shoppingCart[x]);
+                }
             }
         }
 

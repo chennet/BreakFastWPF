@@ -22,6 +22,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Shadows.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.PopupBox.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.ToggleButton.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
@@ -40,11 +41,12 @@
     <materialDesign:DialogHost Identifier="RootDialog" SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
         <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding ElementName=MenuToggleButton, Path=IsChecked}">
             <materialDesign:DrawerHost.LeftDrawerContent>
-                <DockPanel MinWidth="212">
+                <DockPanel MinWidth="212" Visibility="Hidden">
                     <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                                     DockPanel.Dock="Top"
                                     HorizontalAlignment="Right" Margin="16"
                                     IsChecked="{Binding ElementName=MenuToggleButton, Path=IsChecked, Mode=TwoWay}" />
+                    <!--
                     <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
                              ItemsSource="{Binding AppItems}"
                              PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
@@ -54,6 +56,7 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+                    -->
                 </DockPanel>
             </materialDesign:DrawerHost.LeftDrawerContent>
             <DockPanel>
@@ -62,7 +65,7 @@
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
                                         x:Name="MenuToggleButton"/>
-                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                        <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Visibility="Hidden">
                             <StackPanel>
                                 <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
                                 <Button Content="Nice Popup" Click="MenuPopupButton_OnClick"/>
@@ -79,14 +82,97 @@
                         <RowDefinition Height="10" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <local:DocumentationLinks DataContext="{Binding ElementName=DemoItemsListBox, Path=SelectedItem}" Margin="0 0 0 16" />
-                    <ScrollViewer Grid.Row="1" 
-                                  Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}" PanningMode="Both" MaxHeight="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" VerticalScrollBarVisibility="Disabled">
-                        <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
-                    </ScrollViewer>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="170" />
+                        </Grid.ColumnDefinitions>
+                        <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
+                             ItemsSource="{Binding AppItems}"
+                             PreviewMouseLeftButtonUp="UIElement_OnPreviewMouseLeftButtonUp">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="common:AppItems">
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                                        <Image Source="{Binding Image}" Height="48" Width="48" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        <TextBlock Text="{Binding Name}" Height="26" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Top" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <ScrollViewer Grid.Column="1" 
+                                  Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}" 
+                                  PanningMode="Both" 
+                                  MaxHeight="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" 
+                                  VerticalScrollBarVisibility="Disabled">
+                            <ContentControl Content="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.Content}" />
+                        </ScrollViewer>
+                        <Grid Grid.Column="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <!-- Shopping cart start -->
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" Width="165" PanningMode="VerticalOnly">
+                                <Grid Margin="10">
+                                    <ItemsControl x:Name="wrapcartitem" ItemsSource="{Binding Source={StaticResource CartListDataSource}}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <WrapPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <materialDesign:Card Margin="8">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="70" />
+                                                            <RowDefinition Height="*" />
+                                                            <RowDefinition Height="Auto" />
+                                                        </Grid.RowDefinitions>
+                                                        <Image Source="{Binding Path=Photo}" Height="70" Width="98" Stretch="UniformToFill" />
+                                                        <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
+                                            HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                            Margin="0 0 8 -10"
+                                            Click="RemoveFromShoppingCart"
+                                                Background="Red"
+                                            Tag="{Binding}">
+                                                            <materialDesign:PackIcon Kind="Close" />
+                                                        </Button>
+                                                        <StackPanel Grid.Row="1" Margin="4 10 4 4" >
+                                                            <TextBlock FontSize="12" Text="{Binding Path=ItemType.Description}" Width="110" />
+                                                        </StackPanel>
+                                                    </Grid>
+                                                </materialDesign:Card>
+                                                <!-- </smtx:XamlDisplay> -->
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </Grid>
+                            </ScrollViewer>
+                            <!-- Shopping cart End -->
+                            <StackPanel Grid.Row="1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Name="selcount" FontSize="18" VerticalAlignment="Center" Text="0"/>
+                                        <TextBlock Margin="5" FontSize="18" Text=" 項合計金額:" />
+                                    </StackPanel>
+                                    <TextBlock Margin="10" Grid.Row="1" Name="total_cost" FontSize="24" Foreground="Yellow" HorizontalAlignment="Right">0.-</TextBlock>
+                                    <!--
+                    <Button Margin="5" Grid.Row="2" Name="CheckOutButton" Tag="{Binding Source={StaticResource CartListDataSource}}" Command="{Binding RunCheckOutCommand}" CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Tag}" IsEnabled="False">結 帳</Button>
+                    -->
+                                    <Button Height="80" Margin="5" Grid.Row="2" Name="CheckOutButton" Click="CheckOut_Button" Command="{Binding RunCheckOutCommand}" IsEnabled="False" FontSize="24">結 帳</Button>
+                                </Grid>
+                            </StackPanel>
+                            <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" Grid.Row="1" />
+                        </Grid>
+                    </Grid>
 
-                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar"
-                                            Grid.Row="1" />
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>

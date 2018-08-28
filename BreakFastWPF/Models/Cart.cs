@@ -98,5 +98,6 @@ namespace BreakFastWPF.Models
     }
 
     public class CartList : ObservableCollection<ItemBase> { }
+    public class ShipList : ObservableCollection<ItemBase> { }
 
 }

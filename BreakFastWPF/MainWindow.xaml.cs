@@ -9,6 +9,8 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.ComponentModel;
+using BreakFastWPF.Models;
+using System.Windows.Controls;
 
 namespace BreakFastWPF
 {
@@ -18,9 +20,12 @@ namespace BreakFastWPF
     public partial class MainWindow : Window
     {
         public static Snackbar Snackbar;
+        CartList ShoppingCart;
         public MainWindow()
         {
             InitializeComponent();
+            ShoppingCart = App.Current.Resources["CartListDataSource"] as CartList;
+            ((INotifyPropertyChanged)ShoppingCart).PropertyChanged += new PropertyChangedEventHandler(ShoppingCartChanged);
 
             Task.Factory.StartNew(() =>
             {
@@ -33,6 +38,7 @@ namespace BreakFastWPF
             }, TaskScheduler.FromCurrentSynchronizationContext());
 
             DataContext = new MainWindowViewModel(MainSnackbar.MessageQueue);
+            new DialogsViewModel();
 
             Snackbar = this.MainSnackbar;
         }
@@ -86,6 +92,34 @@ namespace BreakFastWPF
             await DialogHost.Show(appExitDialog, "RootDialog");
             this.Close();
         }
+
+        public void ShoppingCartChanged(object sender, PropertyChangedEventArgs e)
+        {
+            double total = 0;
+            for (int x = 0; x < ShoppingCart.Count; x++)
+            {
+                total += ShoppingCart[x].ItemType.Price;
+            }
+            selcount.Text = ShoppingCart.Count.ToString();
+            total_cost.Text = total.ToString() + ".-";
+            if (ShoppingCart.Count == 0)
+                CheckOutButton.IsEnabled = false;
+            else CheckOutButton.IsEnabled = true;
+
+        }
+        private void RemoveFromShoppingCart(object sender, RoutedEventArgs e)
+        {
+            ItemBase item = ((Button)sender).Tag as ItemBase;
+            ShoppingCart.Remove(item);
+
+        }
+        private async void CheckOut_Button(object sender, RoutedEventArgs e)
+        {
+            //CheckoutDialog.IsOpen = !CheckoutDialog.IsOpen;
+            var checkoutDialog = new CheckoutDialog();
+            await DialogHost.Show(checkoutDialog, "RootDialog");
+        }
+
 
         /* method 2 - use message box::: NOT working???
         private void AppExitButton_OnClick(object sender, RoutedEventArgs e)

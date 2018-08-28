@@ -4,7 +4,7 @@
     xmlns:local="clr-namespace:BreakFastWPF.Models">
     <!-- SHOPPING CART TEMPLATE -->
     <local:ObsMenu x:Key="ObsMenu" />
-    <DataTemplate DataType="data:Menu" x:Key="ShoppedItem">
+    <DataTemplate DataType="data:Menus" x:Key="ShoppedItem">
         <Grid Margin="3" >
             <Border VerticalAlignment="Center"
                             HorizontalAlignment="Center"

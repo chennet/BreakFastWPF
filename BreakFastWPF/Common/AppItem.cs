@@ -14,6 +14,7 @@ namespace BreakFastWPF.Common
     public class AppItem : INotifyPropertyChanged
     {
         private string _name;
+        private string _image;
         private object _content;
         private ScrollBarVisibility _horizontalScrollBarVisibilityRequirement;
         private ScrollBarVisibility _verticalScrollBarVisibilityRequirement;
@@ -22,6 +23,7 @@ namespace BreakFastWPF.Common
         public AppItem(string name, object content, IEnumerable<DocumentationLink> documentation)
         {
             _name = name;
+            _image = "Assets/" + name + ".png";
             Content = content;
             Documentation = documentation;
         }
@@ -30,6 +32,12 @@ namespace BreakFastWPF.Common
         {
             get { return _name; }
             set { this.MutateVerbose(ref _name, value, RaisePropertyChanged()); }
+        }
+
+        public string Image
+        {
+            get { return _image; }
+            set { this.MutateVerbose(ref _image, value, RaisePropertyChanged()); }
         }
 
         public object Content

@@ -13,18 +13,24 @@ namespace BreakFastWPF.Common
 
             AppItems = new[]
             {
-                new AppItem("Order", new Order { DataContext = new DialogsViewModel() },
-                    new []
+                //new AppItem("Order", new Order { DataContext = new DialogsViewModel() },
+                //new AppItem("Order", new Order(),
+                //    new []
+                //    {
+                //        //new DocumentationLink(DocumentationLinkType.Wiki, $"{ConfigurationManager.AppSettings["GitHub"]}/wiki", "WIKI"),
+                //        DocumentationLink.AppPageLink<Order>()
+                //    }
+                //),
+                new AppItem("All", new MenuOrder(), new []
                     {
-                        new DocumentationLink(DocumentationLinkType.Wiki, $"{ConfigurationManager.AppSettings["GitHub"]}/wiki", "WIKI"),
-                        DocumentationLink.AppPageLink<Order>()
-                    }
-                ),
-                new AppItem("Setup", new SettingWindow(), new []
+                        DocumentationLink.ApiLink<MenuOrder>()
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
+                new AppItem("Bread", new MenuOrder("Main"), new []
                     {
-                        DocumentationLink.AppPageLink<SettingWindow>(),
-                        DocumentationLink.StyleLink("SettingWindow"),
-                        DocumentationLink.ApiLink<SettingWindow>()
+                        DocumentationLink.ApiLink<MenuOrder>()
                     })
                 {
                     VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto

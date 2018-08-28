@@ -1,10 +1,12 @@
 ﻿
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\App.xaml;;
+FC:\vs-sample\BreakFastWPF\BreakFastWPF\Common\ShipListResourses.xaml;;
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\Common\CartListResourses.xaml;;
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\Common\CommResourses.xaml;;
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\Common\template_order.xaml;;
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\DocumentationLinks.xaml;;
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\CheckoutDialog.xaml;;
+FC:\vs-sample\BreakFastWPF\BreakFastWPF\MenuOrder.xaml;;
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\SuperWindow.xaml;;
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\Order.xaml;;
 FC:\vs-sample\BreakFastWPF\BreakFastWPF\Cards.xaml;;

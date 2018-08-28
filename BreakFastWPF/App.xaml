@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
                 <ResourceDictionary Source="/Common/CommResourses.xaml"/>
                 <ResourceDictionary Source="/Common/CartListResourses.xaml"/>
+                <ResourceDictionary Source="/Common/ShipListResourses.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <!--
             <ObjectDataProvider x:Name="ShoppingCartODP"

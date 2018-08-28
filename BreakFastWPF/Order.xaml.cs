@@ -1,4 +1,5 @@
-﻿using System;
+﻿/* This file is no longer use */
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -29,6 +30,7 @@ namespace BreakFastWPF
         CartList ShoppingCart;
         public Order()
         {
+            App.Current.Properties["MenuType"] = null;
             InitializeComponent();
 
             //ObjectDataProvider menuProvider = this.Resources["Menu"] as ObjectDataProvider;
@@ -36,7 +38,7 @@ namespace BreakFastWPF
             //CartList cartlist = menuProvider.Data as CartList;
             //ShoppingCart = cartlist;
             ShoppingCart = App.Current.Resources["CartListDataSource"] as CartList;
-            ((INotifyPropertyChanged)ShoppingCart).PropertyChanged += new PropertyChangedEventHandler(ShoppingCartChanged);
+            //((INotifyPropertyChanged)ShoppingCart).PropertyChanged += new PropertyChangedEventHandler(ShoppingCartChanged);
 
         }
 
@@ -45,20 +47,6 @@ namespace BreakFastWPF
             MessageBox.Show("PropertyChanged!");
         }
 
-        public void ShoppingCartChanged(object sender, PropertyChangedEventArgs e)
-        {
-            double total = 0;
-            for (int x = 0; x < ShoppingCart.Count; x++)
-            {
-                total += ShoppingCart[x].ItemType.Price;
-            }
-            selcount.Text = ShoppingCart.Count.ToString();
-            total_cost.Text = total.ToString() + ".-";
-            if (ShoppingCart.Count == 0)
-                CheckOutButton.IsEnabled = false;
-            else CheckOutButton.IsEnabled = true;
-
-        }
 
         private void Flipper_OnIsFlippedChanged(object sender, PropertyChangedEventArgs e)
         {
@@ -68,7 +56,7 @@ namespace BreakFastWPF
         private void AddToShoppingCart(object sender, RoutedEventArgs e)
         {
             //selText.Text = "You select " + ((Button)sender).Tag.ToString();
-            Models.Menu selItem = ((Button)sender).Tag as Models.Menu;
+            Menus selItem = ((Button)sender).Tag as Menus;
             ItemBase item = new CartItem(selItem.ImageUri, selItem.MenuId, selItem.Title, selItem.Price);
             ShoppingCart.Add(item);
             //ShoppingCartListBox.ScrollIntoView(item);
@@ -76,16 +64,6 @@ namespace BreakFastWPF
 
         }
 
-        private void CheckOut_Button(object sender, RoutedEventArgs e)
-        {
-            //CheckoutDialog.IsOpen = !CheckoutDialog.IsOpen;
-        }
 
-        private void RemoveFromShoppingCart(object sender, RoutedEventArgs e)
-        {
-            ItemBase item = ((Button)sender).Tag as ItemBase;
-            ShoppingCart.Remove(item);
-
-        }
     }
 }

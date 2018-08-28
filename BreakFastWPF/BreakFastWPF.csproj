@@ -229,6 +229,7 @@
     <Compile Include="Common\DialogsViewModel.cs" />
     <Compile Include="Common\DocumentationLink.cs" />
     <Compile Include="Common\DocumentationLinkType.cs" />
+    <Compile Include="Common\SuperWindowViewModel.cs" />
     <Compile Include="Common\MainWindowViewModel.cs" />
     <Compile Include="Common\NotEmptyValidationRule.cs" />
     <Compile Include="Common\NotifyPropertyChangedExtension.cs" />
@@ -242,6 +243,9 @@
     <Compile Include="CheckoutDialog.xaml.cs">
       <DependentUpon>CheckoutDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MenuOrder.xaml.cs">
+      <DependentUpon>MenuOrder.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SuperWindow.xaml.cs">
       <DependentUpon>SuperWindow.xaml</DependentUpon>
     </Compile>
@@ -249,7 +253,7 @@
       <DependentUpon>Order.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Models\Menus.cs" />
     <Compile Include="LoginDialog.xaml.cs">
       <DependentUpon>LoginDialog.xaml</DependentUpon>
     </Compile>
@@ -269,6 +273,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Common\ShipListResourses.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Common\CartListResourses.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -286,6 +294,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CheckoutDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MenuOrder.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -426,6 +438,16 @@
       <Project>{7fcf7b7f-149e-4be7-8249-bc5e63b26df8}</Project>
       <Name>Database</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Bread.png" />
+    <Resource Include="Assets\Rice.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Drink.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\All.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -21,6 +21,7 @@ namespace BreakFastWPF
         public SuperWindow()
         {
             InitializeComponent();
+            DataContext = new SuperWindowViewModel();
 
         }
 
@@ -44,7 +45,7 @@ namespace BreakFastWPF
                 Message = { Text = ((ButtonBase)sender).Content.ToString() }
             };
 
-            await DialogHost.Show(appMessageDialog, "RootDialog");
+            await DialogHost.Show(appMessageDialog, "SuperDialog");
         }
 
         private void OnCopy(object sender, ExecutedRoutedEventArgs e)
@@ -70,7 +71,7 @@ namespace BreakFastWPF
                 Message = { Text = ((ButtonBase)sender).Content.ToString() }
             };
 
-            await DialogHost.Show(appExitDialog, "RootDialog");
+            await DialogHost.Show(appExitDialog, "SuperDialog");
             this.Close();
         }
 
