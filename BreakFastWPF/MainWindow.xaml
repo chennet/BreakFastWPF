@@ -64,7 +64,7 @@
                                             Mode="PrimaryMid" DockPanel.Dock="Top">
                     <DockPanel>
                         <ToggleButton Style="{StaticResource MaterialDesignHamburgerToggleButton}" IsChecked="False"
-                                        x:Name="MenuToggleButton"/>
+                                        x:Name="MenuToggleButton" Visibility="Hidden"/>
                         <materialDesign:PopupBox DockPanel.Dock="Right" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Visibility="Hidden">
                             <StackPanel>
                                 <Button Content="Hello World" Click="MenuPopupButton_OnClick"/>
@@ -169,10 +169,9 @@
                                     <Button Height="80" Margin="5" Grid.Row="2" Name="CheckOutButton" Click="CheckOut_Button" Command="{Binding RunCheckOutCommand}" IsEnabled="False" FontSize="24">結 帳</Button>
                                 </Grid>
                             </StackPanel>
-                            <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" Grid.Row="1" />
                         </Grid>
                     </Grid>
-
+                    <materialDesign:Snackbar MessageQueue="{materialDesign:MessageQueue}" x:Name="MainSnackbar" Grid.Row="1" />
                 </Grid>
             </DockPanel>
         </materialDesign:DrawerHost>
