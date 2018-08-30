@@ -86,7 +86,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="170" />
+                            <ColumnDefinition Width="150" />
                         </Grid.ColumnDefinitions>
                         <ListBox x:Name="DemoItemsListBox" Margin="0 16 0 16" SelectedIndex="0"                         
                              ItemsSource="{Binding AppItems}"
@@ -100,7 +100,7 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-                        <ScrollViewer Grid.Column="1" 
+                        <ScrollViewer Grid.Column="1"
                                   Padding="{Binding ElementName=DemoItemsListBox, Path=SelectedItem.MarginRequirement}" 
                                   PanningMode="Both" 
                                   MaxHeight="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}" 

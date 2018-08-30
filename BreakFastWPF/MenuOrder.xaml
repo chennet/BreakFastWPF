@@ -51,19 +51,19 @@
                             <!--
                             <smtx:XamlDisplay Key="cards_1" Margin="5" VerticalContentAlignment="Top">
                             -->
-                            <materialDesign:Card Margin="10">
+                            <materialDesign:Card Margin="3">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="140" />
                                         <RowDefinition Height="*" />
                                         <RowDefinition Height="Auto" />
                                     </Grid.RowDefinitions>
-                                    <Image Source="{Binding ImageUri}" Height="140" Width="196" Stretch="UniformToFill" />
+                                    <Image Source="{Binding ImageUri}" Height="Auto" Width="190" Stretch="UniformToFill" />
                                     <Button Grid.Row="0" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
                                             HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                             Width="80"
                                             Height="80"
-                                            Margin="0 0 3 -26"
+                                            Margin="0 0 3 -22"
                                             Click="AddToShoppingCart"
                                             Opacity="0.8"
                                             Tag="{Binding}">

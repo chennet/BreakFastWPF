@@ -51,7 +51,7 @@ namespace BreakFastWPF.Models
             using (DatabaseContext dbContext = new DatabaseContext())
             {
                 var query = from it in dbContext.BFMenus
-                            orderby it.MenuId
+                            orderby it.MenuType
                             select it; ;
                 if (App.Current.Properties["MenuType"] != null)
                 {

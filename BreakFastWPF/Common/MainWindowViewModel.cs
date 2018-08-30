@@ -28,13 +28,27 @@ namespace BreakFastWPF.Common
                 {
                     VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                 },
-                new AppItem("Bread", new MenuOrder("Main"), new []
+                new AppItem("Bread", new MenuOrder("Bread"), new []
                     {
                         DocumentationLink.ApiLink<MenuOrder>()
                     })
                 {
                     VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
                 },
+                new AppItem("Rice", new MenuOrder("Rice"), new []
+                    {
+                        DocumentationLink.ApiLink<MenuOrder>()
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                },
+                new AppItem("Drink", new MenuOrder("Drink"), new []
+                    {
+                        DocumentationLink.ApiLink<MenuOrder>()
+                    })
+                {
+                    VerticalScrollBarVisibilityRequirement = ScrollBarVisibility.Auto
+                }
             };
         }
 
