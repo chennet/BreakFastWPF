@@ -51,7 +51,7 @@
                             <!--
                             <smtx:XamlDisplay Key="cards_1" Margin="5" VerticalContentAlignment="Top">
                             -->
-                            <materialDesign:Card Margin="3">
+                            <materialDesign:Card Margin="5">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="140" />
