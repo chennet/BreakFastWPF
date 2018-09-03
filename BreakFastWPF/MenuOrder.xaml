@@ -36,11 +36,16 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Background="#FF1E1E1E">
 
         <ScrollViewer PanningMode="VerticalOnly" MaxHeight="{DynamicResource {x:Static SystemParameters.MaximizedPrimaryScreenHeightKey}}">
             <Grid Margin="10">
-                <ItemsControl x:Name="wrapitem" ItemsSource="{Binding Source={StaticResource ObsMenu}}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="157*"/>
+                    <ColumnDefinition Width="34*"/>
+                    <ColumnDefinition Width="972*"/>
+                </Grid.ColumnDefinitions>
+                <ItemsControl x:Name="wrapitem" ItemsSource="{Binding Source={StaticResource ObsMenu}}" Grid.ColumnSpan="3">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal" />
