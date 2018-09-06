@@ -42,7 +42,7 @@
         <!-- Shopping cart start -->
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <TextBlock Name="ordercount" Margin="10" Width="100" FontSize="16"/>
@@ -78,11 +78,12 @@
             <TextBlock Grid.Row="2" FontSize="18" Text="已投金額"/>
             <TextBox Grid.Row="3" Name="orderpaid">0</TextBox>
         </Grid>
-        <StackPanel Grid.Row="3"
-                    Margin="0 12 30 0"
-                    Height="45"
-                    Orientation="Horizontal" 
-                    HorizontalAlignment="Right">
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="150" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="chkoutmsg" HorizontalAlignment="Left" Width="200"></TextBlock>
             <!--
             <Button IsDefault="True" Style="{DynamicResource MaterialDesignFlatButton}"
                     Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
@@ -92,14 +93,14 @@
                 ACCEPT
             </Button>
             -->
-            <Button IsCancel="True" Height="45" FontSize="22" Margin="8 0 0 0" Click="TradCancelButton" Name="CancelTradButton"
-                    Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
+            <Button Grid.Column="1" IsCancel="True" Height="45" FontSize="22" Margin="8 0 10 0" Click="TradCancelButton" Name="CancelTradButton"
+                    Command="{x:Static wpf:DialogHost.CloseDialogCommand}" HorizontalAlignment="Right">
                 <Button.CommandParameter>
                     <system:Boolean>False</system:Boolean>
                 </Button.CommandParameter>
-                取消交易
+                <TextBlock Name="BtnChkOutTitle" Text="取消交易" />
             </Button>
-            <TextBlock Name="countdown" HorizontalAlignment="Right"></TextBlock>
-        </StackPanel>
+
+        </Grid>
     </Grid>
 </UserControl>

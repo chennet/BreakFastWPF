@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using MaterialDesignThemes.Wpf;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -76,7 +77,7 @@ namespace BreakFastWPF
                 }
                 else
                 {
-                    PSStatusTextBlock.Text = "PS3 status Failed!";
+                    PSStatusTextBlock.Text = "投幣機狀態錯誤!";
                 }
             }
             else
@@ -101,9 +102,15 @@ namespace BreakFastWPF
                 check_cnt = MAX_CHECK_TIME;
                 pGetData = pstrad.reqTransactionStatus();
                 while (!(pGetData[0] == 02) && check_cnt > 0) { check_cnt--; pGetData = pstrad.reqTransactionStatus(); Thread.Sleep(500); }
-                if (pGetData[0] == 02) rtn = true;
-                PSStatusTextBlock.Text = "周邊裝置啟動失敗";
+                if (pGetData[0] == 02)
+                {
+                    rtn = true;
+                    PSStatusTextBlock.Text = "裝置已啟動";
+                }
+                PSStatusTextBlock.Text = "裝置啟動失敗";
             }
+            else
+                PSStatusTextBlock.Text = "裝置啟動失敗";
             return rtn;
         }
 
@@ -171,8 +178,13 @@ namespace BreakFastWPF
                 do
                 {
                     if (pGetData == null) continue;
-                    if (pGetData[0] == 03) break;
-                    wait_cnt--;
+                    if (pGetData[0] == 03)
+                    {
+                        wait_cnt = 0;
+                        break;
+                    }
+                    else
+                        wait_cnt--;
                     pGetData = pstrad.reqTransactionStatus();
                     Thread.Sleep(100);
                     if (backgroundWorker.CancellationPending)
@@ -191,7 +203,8 @@ namespace BreakFastWPF
                     if ((user_paid - req_to_pay) > 0)
                     {
                         //使用AutoCal_Payout_Amount先行試算以目前的庫存量夠不夠被找出，此時回傳ack或Nack代表夠或不夠
-                        if (1 != pstrad.AutoCalPayoutAmount(2, (user_paid - req_to_pay), 0))
+                        rtn = pstrad.AutoCalPayoutAmount(2, (user_paid - req_to_pay), 0);
+                        if (rtn == 1)
                         {
                             wait_cnt = MAX_CHECK_TIME;
                             int[] pData = pstrad.reqThePayoutAmountCalResult();
@@ -199,6 +212,7 @@ namespace BreakFastWPF
                             {
                                 if (pData == null) continue;
                                 if (pData[0] != 1) break;
+                                wait_cnt--;
                                 Thread.Sleep(100);
                                 pData = pstrad.reqThePayoutAmountCalResult();
                                 if (backgroundWorker.CancellationPending)
@@ -206,7 +220,7 @@ namespace BreakFastWPF
                                     e.Cancel = true;
                                     return;
                                 }
-                            } while (true);
+                            } while (wait_cnt > 0);
 
                             if (pData != null)
                             {
@@ -218,6 +232,7 @@ namespace BreakFastWPF
                                     rtn = pstrad.AutoCalPayoutAmount(1, (user_paid - req_to_pay), 0);
                                     complete_trad = true;
                                     DoShipment();
+                                    wait_cnt = MAX_CHECK_TIME;
                                     do
                                     {
                                         pData = pstrad.reqTransactionStatus();
@@ -228,24 +243,31 @@ namespace BreakFastWPF
                                             e.Cancel = true;
                                             return;
                                         }
-                                    } while (true);
+                                        wait_cnt--;
+                                    } while (wait_cnt > 0);
 
                                     if (1 == pstrad.setTransactionFinish())
                                     {
                                         ps_msg = "交易完成.";
                                         backgroundWorker.ReportProgress(0);
+                                        BtnChkOutTitle.Text = "交易完成";
                                     }
+                                }
+                                else
+                                {
+                                    ps_msg = "錯誤，不足找零";
+                                    backgroundWorker.ReportProgress(0);
                                 }
                             }
                             else
                             {
-                                ps_msg = "錯誤或不足找零";
+                                ps_msg = "錯誤，無法找零";
                                 backgroundWorker.ReportProgress(0);
                             }
                         }
                         else
                         {
-                            ps_msg = "找零計算失敗或不足";
+                            ps_msg = rtn.ToString() + " 找零計算失敗或不足";
                             backgroundWorker.ReportProgress(0);
                         }
                     }
@@ -258,6 +280,7 @@ namespace BreakFastWPF
                         {
                             ps_msg = "交易完成.";
                             backgroundWorker.ReportProgress(0);
+                            BtnChkOutTitle.Text = "交易完成";
                         }
                     }
                 }

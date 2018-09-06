@@ -21,6 +21,7 @@ namespace BreakFastWPF.Common
             AcceptSample4DialogCommand = new AnotherCommandImplementation(AcceptSample4Dialog);
             CancelSample4DialogCommand = new AnotherCommandImplementation(CancelSample4Dialog);
             OpenLoginDialogCommand = new AnotherCommandImplementation(OpenLoginDialog);
+            CloseCheckoutDialogCommand = new AnotherCommandImplementation(CloseCheckoutDialog);
             AcceptLoginDialogCommand = new AnotherCommandImplementation(AcceptLoginDialog);
         }
 
@@ -98,6 +99,7 @@ namespace BreakFastWPF.Common
         public ICommand AcceptSample4DialogCommand { get; }
         public ICommand CancelSample4DialogCommand { get; }
         public ICommand OpenLoginDialogCommand { get; }
+        public ICommand CloseCheckoutDialogCommand { get; }
         public ICommand AcceptLoginDialogCommand { get; }
 
         private bool _isSample4DialogOpen;
@@ -106,6 +108,8 @@ namespace BreakFastWPF.Common
         private bool _isLoginDialogOpen;
         private object _loginContent;
 
+        private bool _isCheckoutDialogOpen;
+
         public bool IsSample4DialogOpen
         {
             get { return _isSample4DialogOpen; }
@@ -113,6 +117,17 @@ namespace BreakFastWPF.Common
             {
                 if (_isSample4DialogOpen == value) return;
                 _isSample4DialogOpen = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsCheckoutDialogOpen
+        {
+            get { return _isCheckoutDialogOpen; }
+            set
+            {
+                if (_isCheckoutDialogOpen == value) return;
+                _isCheckoutDialogOpen = value;
                 OnPropertyChanged();
             }
         }
@@ -160,6 +175,11 @@ namespace BreakFastWPF.Common
         private void CancelSample4Dialog(object obj)
         {
             IsSample4DialogOpen = false;
+        }
+
+        private void CloseCheckoutDialog(object obj)
+        {
+            IsCheckoutDialogOpen = false;
         }
 
         private void AcceptSample4Dialog(object obj)

@@ -31,19 +31,18 @@ namespace BreakFastWPF
                 dbContext.Database.Migrate();
             }
             //If multi screens available, show SuperWindow to screen #2
-            //if (Screen.AllScreens.Length > 1)
-            //{
-                SuperWindow swin = new SuperWindow();
-            //    Screen s1 = Screen.AllScreens[1];
-            //    System.Drawing.Rectangle r1 = s1.WorkingArea;
-            //    swin.WindowState = System.Windows.WindowState.Normal;
-            //    swin.WindowStartupLocation = System.Windows.WindowStartupLocation.Manual;
-            //    swin.Top = r1.Top;
-            //    swin.Left = r1.Left;
-
-                swin.Show();
-                swin.WindowState = System.Windows.WindowState.Maximized;
-            //}
+            SuperWindow swin = new SuperWindow();
+            if (Screen.AllScreens.Length > 1)
+            {
+                Screen s1 = Screen.AllScreens[1];
+                System.Drawing.Rectangle r1 = s1.WorkingArea;
+                swin.WindowState = System.Windows.WindowState.Normal;
+                swin.WindowStartupLocation = System.Windows.WindowStartupLocation.Manual;
+                swin.Top = r1.Top;
+                swin.Left = r1.Left;
+            }
+            swin.Show();
+            swin.WindowState = System.Windows.WindowState.Maximized;
         }
 
         //void AppStartup(object sender, StartupEventArgs args)
